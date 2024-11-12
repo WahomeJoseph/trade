@@ -7,7 +7,7 @@ export const createUser = asyncHandler(async (req, res) => {
     const {username, email, password} = req.body
 
     if(!username ||!email || !password) {
-        res.status(400).json(message: 'All inmputs are required!')
+        res.status(400).json(message: 'All inputs are required!')
     }
 
     // add new users if not exist
