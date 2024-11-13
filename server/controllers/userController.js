@@ -67,6 +67,21 @@ const loginUser = asyncHandler(async (req, res) => {
 
 
 // logout controller... tokens and cookies for timeout sessions
+const logoutCurrentUser = asyncHandler(async (req, res) => {
+    res.cookie('jwt', '', {
+        httyOnly: true,
+        expires: new Date(0)
+    })
+
+    res.status(200).json(message: 'You are now Logged Out')
+})
+
+// get all users in the system
+const getAllUsers = asyncHandler(async (req, res) => {
+    res.json(users)
+})
+
+
 
 
 
