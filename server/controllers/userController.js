@@ -76,11 +76,30 @@ const logoutCurrentUser = asyncHandler(async (req, res) => {
     res.status(200).json(message: 'You are now Logged Out')
 })
 
+// ADMIN rights
 // get all users in the system
 const getAllUsers = asyncHandler(async (req, res) => {
     res.json(users)
 })
 
+
+// load the current user profile/details
+const getCurrentUserProfile = asyncHandler(async (req,res) => {
+    const user = await User.findByid(req.user._id)
+
+    if (user) {
+        res.json({
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            password: user.password,
+        })
+    } else {
+        res.status(400).json(message: 'User Not Found!')
+    }
+})
+
+// 
 
 
 
