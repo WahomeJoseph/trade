@@ -99,7 +99,7 @@ const getCurrentUserProfile = asyncHandler(async (req,res) => {
     }
 })
 
-// admin can update user profile
+// update current user profile
 const updateCurrentUserProfile = asyncHandler (async (req,res) => {
     const user = await User.findById(req.user._id)
 
@@ -144,7 +144,39 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 })
 
+// admin to retrieve a single user
+const getUser = asynchandler(async (req, res) => {
+    const user =  await User.findById(req.params.id).select('password')
 
+    if (user) {
+        res.json(user)
+    } else {
+        res.status(400).json({message: 'No Match Found!'})
+    }
+})
+
+
+// admin to update a single user profile
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+
+    if (user) {
+        user.username = req.body.username || user.username
+        user.email = req.body.email || user.email
+        user.isAdmin = Boolean(req.body.isAdmin)
+
+        const updatedUser = await user.save()
+
+        res.json({
+            _id: updatedUser._id,
+            username: upatedUser.username,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+        })
+    } else {
+        res.status(404).json({message: 'User Not Found'})
+    }
+})
 
 
 
