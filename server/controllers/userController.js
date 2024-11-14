@@ -37,7 +37,7 @@ export const createUser = asyncHandler(async (req, res) => {
 })
 
 // login controller... users login into the system
-const loginUser = asyncHandler(async (req, res) => {
+export const loginUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body
 
     consiole.log(email)
@@ -67,7 +67,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 
 // logout controller... tokens and cookies for timeout sessions
-const logoutCurrentUser = asyncHandler(async (req, res) => {
+export const logoutCurrentUser = asyncHandler(async (req, res) => {
     res.cookie('jwt', '', {
         httyOnly: true,
         expires: new Date(0)
@@ -84,7 +84,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 
 // load the current user profile/details
-const getCurrentUserProfile = asyncHandler(async (req,res) => {
+export const getCurrentUserProfile = asyncHandler(async (req,res) => {
     const user = await User.findByid(req.user._id)
 
     if (user) {
@@ -100,7 +100,7 @@ const getCurrentUserProfile = asyncHandler(async (req,res) => {
 })
 
 // update current user profile
-const updateCurrentUserProfile = asyncHandler (async (req,res) => {
+export const updateCurrentUserProfile = asyncHandler (async (req,res) => {
     const user = await User.findById(req.user._id)
 
     if (user) {
@@ -129,7 +129,7 @@ const updateCurrentUserProfile = asyncHandler (async (req,res) => {
 })
 
 // admin to delete users
-const deleteUser = asyncHandler(async (req, res) => {
+export const deleteUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id)
 
     if (user) {
@@ -145,7 +145,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 // admin to retrieve a single user
-const getUser = asynchandler(async (req, res) => {
+export const getUser = asynchandler(async (req, res) => {
     const user =  await User.findById(req.params.id).select('password')
 
     if (user) {
@@ -157,7 +157,7 @@ const getUser = asynchandler(async (req, res) => {
 
 
 // admin to update a single user profile
-const updateUser = asyncHandler(async (req, res) => {
+export const updateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id)
 
     if (user) {
