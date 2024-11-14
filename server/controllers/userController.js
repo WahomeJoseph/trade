@@ -114,6 +114,7 @@ const updateCurrentUserProfile = asyncHandler (async (req,res) => {
             user.password = hashedPassword
         }
 
+        // updated user details
         const updatedUser = await user.save()
 
         res.json({
