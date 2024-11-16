@@ -3,6 +3,7 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
 
+// create a new user account
 const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -10,6 +11,7 @@ const createUser = asyncHandler(async (req, res) => {
     throw new Error("All Inputs are Mandatory!.");
   }
 
+  // check if user exist
   const userExists = await User.findOne({ email });
   if (userExists) res.status(400).send("User already exists");
 
@@ -29,10 +31,11 @@ const createUser = asyncHandler(async (req, res) => {
     });
   } catch (error) {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error("No Match Found!");
   }
 });
 
+// logic to login a user 
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -61,15 +64,17 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// current user loged out after time out sessions
 export const logoutCurrentUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httyOnly: true,
     expires: new Date(0),
   });
 
-  res.status(200).json({ message: "Logged out successfully" });
+  res.status(200).json({ message: "Please Login Again!" });
 });
 
+// fetch all users 
 export const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
@@ -86,10 +91,11 @@ export const getCurrentUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("User not found.");
+    throw new Error("No Match Found!");
   }
 });
 
+// update user profile after logging in
 export const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -113,10 +119,11 @@ export const updateCurrentUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("No Match Found!");
   }
 });
 
+// delete a user's account
 export const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -130,10 +137,11 @@ export const deleteUser = asyncHandler(async (req, res) => {
     res.json({ message: "User removed" });
   } else {
     res.status(404);
-    throw new Error("User not found.");
+    throw new Error("No Match Found!");
   }
 });
 
+// fetch a single user...all but their credentials
 export const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select("-password");
 
@@ -141,10 +149,11 @@ export const getUser = asyncHandler(async (req, res) => {
     res.json(user);
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("No Match Found!");
   }
 });
 
+// update a user account profile
 export const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -163,7 +172,7 @@ export const updateUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("No Match Found!");
   }
 });
 
