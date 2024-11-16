@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js'
 import asyncHandler from './asyncHandler.js'
 
-const authenticateUsers = asynchandler(async(req,res,next) => {
+export const authenticateUsers = asynchandler(async(req,res,next) => {
   let token
 
   // Read JWT tokens from jwt cookies
@@ -24,12 +24,11 @@ const authenticateUsers = asynchandler(async(req,res,next) => {
 })
 
 // Check if user id admin...only admin rights
-const authenticateAdmin = (req, res, next) => {
-  if (req.user && req.user isAdmin){
+export const authenticateAdmin = (req, res, next) => {
+
+  if (req.user && req.user isAdmin) {
     next()
   } else {
-    res.status(401).json(message: 'Only Admins Allowed')
+    res.status(401).json({message: 'Only Admins Allowed'})
   }
 }
-
-export {authenticateUsers, authenticateAdmin}
