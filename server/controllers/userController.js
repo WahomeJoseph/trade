@@ -82,7 +82,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
     res.json(users)
 })
 
-
 // load the current user profile/details
 export const getCurrentUserProfile = asyncHandler(async (req,res) => {
     const user = await User.findByid(req.user._id)
