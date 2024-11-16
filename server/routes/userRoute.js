@@ -1,4 +1,5 @@
 import express from 'express'
+<<<<<<< HEAD
 import {createUser} from '../controllers/userController.js'
 <<<<<<< HEAD
 
@@ -6,6 +7,9 @@ const router = express.Router()
 
 router.route('/').post(createUser)
 =======
+=======
+import {createUser, loginUser, logoutCurrentUser, getCurrentUserProfile, updatecurrentUserProfile, getUser, deleteUser, updateUser} from '../controllers/userController.js'
+>>>>>>> 770c8dd450ffb3911f481d8058b6817de6658b51
 import {authenticateUsers, auhenticateAdmin} from '../middlewares/AuthUsers.js'
 const router = express.Router()
 
