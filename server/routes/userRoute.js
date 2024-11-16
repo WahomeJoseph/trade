@@ -6,23 +6,24 @@ const router = express.Router()
 router.route('/').post(createUser)
 const router = express.Router()
 
-// end point to add new users
-router.route('/create').post(createUser)
-  // authorize users
-  .get(authenticateUsers, authenticateAdmin, getAllUsers)
+//route to add new users & authorize users
+router.route('/create').post(createUser).get(authenticateUsers, authenticateAdmin, getAllUsers)
 
-// user routes
+// user routes to login and logout current user
 router.route('./login').post(loginUser)
-router.route(./logout).post(LogoutUser)
+router.route(./logout).post(LogoutCurrentUser)
 
+// route to get current user profile details
+// route to update current user profile details
 router.route('./profile')
 router.get(authenticateUsers, getCurrentUserprofile)
 router.put(authenticateUsers, updateCurrentUserProfile)
 
 // ADMIN rights to manage users
+// @ CRUD OPS
 router.route('./:id')
-router.delete(authenticateUsers, authenticateAdmin, deleteUserById)
-router.get(authenticateUsers, authenticateAdmin, getUsersById)
-router.get(authenticateUsers, authenticateAdmin, updateUsersById)
+router.delete(authenticateUsers, authenticateAdmin, deleteUsers)
+router.get(authenticateUsers, authenticateAdmin, getUsers)
+router.get(authenticateUsers, authenticateAdmin, updateUsers)
 
 export default router
