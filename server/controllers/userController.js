@@ -52,7 +52,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 
         if (isPasswordValid){
             createToken(res, exUser._id)
-
+            
             res.status(200).json({
                 _id: exUser._id,
                 username: exUser.username,
