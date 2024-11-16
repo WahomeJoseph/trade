@@ -26,9 +26,9 @@ export const authenticateUsers = asynchandler(async(req,res,next) => {
 // Check if user id admin...only admin rights
 export const authenticateAdmin = (req, res, next) => {
 
-  if (req.user && req.user isAdmin) {
+  if (req.user && req.user.isAdmin) {
     next()
   } else {
-    res.status(401).json({message: 'Only Admins Allowed'})
+    res.status(400).json({message: 'Only Admins can make the changes!'})
   }
 }
