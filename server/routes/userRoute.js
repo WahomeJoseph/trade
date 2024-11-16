@@ -11,7 +11,7 @@ router.route('/create').post(createUser).get(authenticateUsers, authenticateAdmi
 
 // user routes to login and logout current user
 router.route('./login').post(loginUser)
-router.route(./logout).post(LogoutCurrentUser)
+router.route(./logout).post(logoutCurrentUser)
 
 // route to get current user profile details
 // route to update current user profile details
