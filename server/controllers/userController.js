@@ -7,7 +7,7 @@ import createToken from "../utils/createToken.js";
 const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password) { 
     throw new Error("All Inputs are Mandatory!.");
   }
 
