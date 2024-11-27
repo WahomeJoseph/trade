@@ -4,11 +4,11 @@ import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
 
 // create a new user account
-const createUser = asyncHandler(async (req, res) => {
+export const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) { 
-    throw new Error("All Inputs are Mandatory!.");
+    res.status(400).json({message: 'All inputs are required!'})
   }
 
   // check if user exist
