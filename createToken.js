@@ -1,13 +1,18 @@
 import jwt from 'jsonwebtoken'
 
-const genToken = (res, userId) => {
+export const genToken = (res, userId) => {
   const token = jwt.sign({userId}, process.env.JWT_SECRET_KEY, {
-    expiresIn: '30m'
+    expiresIn: '1h'
   })
 
   // set jwt as a http only cookie
   res.cookie(''jwt', token, {
     httpOnly: true,
     secure: process.env.JWT_NODE !== 'development',
+    sameSite: 'strict',
+    maxAge: 360000
   })
+
+reurn token 
+
 }
