@@ -3,7 +3,7 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
 
-// create a new user account
+// function create a new user account
 export const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -13,8 +13,10 @@ export const createUser = asyncHandler(async (req, res) => {
 
   // check if user exist
   const userExists = await User.findOne({ email });
-  if (userExists) res.status(400).send("User already exists");
+  if (userExists)
+    res.status(400).json({message: "User already exists"});
 
+  // password hashing
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   const newUser = new User({ username, email, password: hashedPassword });
