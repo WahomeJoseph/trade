@@ -7,10 +7,9 @@ router.route('/').post(createUser)
 
 // end point to add new users  
 router.route('/create').post(createUser)
-  // authorize users
-  .get(authenticateUsers, authenticateAdmin, getAllUsers)
+ .get(authenticateUsers, authenticateAdmin, getAllUsers)
 
-// user routes
+
 router.route('./login').post(loginUser)
 // router.route(./logout).post(logoutCurrentUser)
 
