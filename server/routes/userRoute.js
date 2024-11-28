@@ -4,14 +4,12 @@ import {authenticateUsers, authenticateAdmin} from '../middlewares/AuthUsers.js'
 
 const router = express.Router()
 router.route('/').post(createUser)
+router.route('/login').post(loginUser)
 
 // end point to add new users  
 router.route('/create').post(createUser)
  .get(authenticateUsers, authenticateAdmin, getAllUsers)
 
-
-router.route('./login').post(loginUser)
-// router.route(./logout).post(logoutCurrentUser)
 
 router.route('./profile')
 router.get(authenticateUsers, getCurrentUserprofile)
