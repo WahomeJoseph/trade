@@ -38,11 +38,11 @@ export const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// users login 
+// fcn for users to login 
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  // if user exist...proceed to login
+  //check if user exist...proceed to login
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     const isPasswordValid = await bcrypt.compare(
@@ -64,7 +64,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// current user loged out after time out sessions
+// fcn for current user to be logged out after time out sessions
 export const logOutUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httyOnly: true,
