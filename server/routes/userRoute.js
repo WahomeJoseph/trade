@@ -4,7 +4,7 @@ import {authUsers, authAdmin} from '../middlewares/AuthUsers.js'
 
 const router = express.Router()
 
-// authenticate & authorize admin  
+// authenticate & authorize as admin  
 router.route('/create').post(createUser)
  .get(authUsers, authAdmin, getAllUsers)
 
@@ -12,7 +12,7 @@ router.route('/login').post(loginUser) //login route
 router.route('/logOut').post(logOutUser) //logout route
 
 router.route('./profile')
-router.get(authUsers, getCurrentUserprofile)
+router.get(authUsers, getCurrentUserprofile) //get current user profile
 router.put(authUsers, getCurrentUserProfile)
 
 // ADMIN rights to manage users
