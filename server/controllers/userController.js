@@ -38,12 +38,9 @@ export const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// logic to login a user 
+// users login 
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-
-  console.log(email);
-  console.log(password);
 
   const existingUser = await User.findOne({ email });
 
