@@ -10,9 +10,9 @@ export const authUsers = asyncHandler(async (req,res,next) => {
 
  if (token) {
    try {
-     const decoded = jwt.verify(token, process.env.JWT_SECRET)
+     const decoded = jwt.verify(token, process.env.JWT_SECRET_SECRET)
      req.user = await User.findById(decoded.userId).select('-password')
-     next()
+     next() //go to the next request
    } catch (error) {
      res.status(401).json({message: 'Authentication Required!'})
    }
