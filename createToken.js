@@ -13,6 +13,6 @@ export const genToken = (res, userId) => {
     maxAge: 360000 //login session to last for one hour
   })
 
-reurn token 
+return token 
 
 }
