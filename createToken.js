@@ -10,7 +10,7 @@ export const genToken = (res, userId) => {
     httpOnly: true,
     secure: process.env.JWT_NODE !== 'development',
     sameSite: 'strict',
-    maxAge: 360000
+    maxAge: 360000 //login session to last for one hour
   })
 
 reurn token 
