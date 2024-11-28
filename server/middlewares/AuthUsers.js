@@ -17,8 +17,7 @@ export const authUsers = asyncHandler(async (req,res,next) => {
      res.status(401).json({message: 'Authentication Required!'})
    }
  } else {
-   res.status(401)
-   throw new Error ('Authentication Required!')
+   res.status(401).json({message: 'Authentication Required! No tokens found!'})
  }
 })
 
