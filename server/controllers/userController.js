@@ -66,8 +66,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 
 // fcn for current user to be logged out after time out sessions
 export const logOutUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", {
-    httyOnly: true,
+  res.cookie('jwt', "", {
+    httpOnly: true,
     expires: new Date(0),
   });
 
