@@ -59,7 +59,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         email: existingUser.email,
         isAdmin: existingUser.isAdmin,
       });
-      return;
+      return; //exit the function after sending the response
     }
   }
 });
