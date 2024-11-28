@@ -2,10 +2,10 @@ import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js'
 import asyncHandler from '../middlewares/asyncHandler.js'
 
-export const authenticateUsers = asyncHandler(async(req,res,next) => {
+export const authUsers = asyncHandler(async (req,res,next) => {
   let token
 
-  // Read JWT tokens from jwt cookies
+  // Read JWT from jwt cookies
   token = req.cookies.jwt
 
  if (token) {
