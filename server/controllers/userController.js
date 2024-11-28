@@ -64,7 +64,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// fcn for current user to be logged out after time out sessions
+// fcn to logout current user after time out sessions
 export const logOutUser = asyncHandler(async (req, res) => {
   res.cookie('jwt', "", {
     httpOnly: true,
@@ -92,8 +92,7 @@ export const getCurrentUserProfile = asyncHandler(async (req, res) => {
       email: user.email,
     });
   } else {
-    res.status(404);
-    throw new Error("No Match Found!");
+    res.status(404).json({message: 'No User Found!'})
   }
 });
 
