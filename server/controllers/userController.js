@@ -65,7 +65,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 // current user loged out after time out sessions
-export const logoutCurrentUser = asyncHandler(async (req, res) => {
+export const logOutUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httyOnly: true,
     expires: new Date(0),
