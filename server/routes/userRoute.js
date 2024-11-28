@@ -3,7 +3,7 @@ import {createUser, loginUser, logOutUser, getCurrentUserProfile, updateUser, ge
 import {authUsers, authAdmin} from '../middlewares/AuthUsers.js'
 
 const router = express.Router()
-router.route('/').post(createUser)
+
 router.route('/login').post(loginUser) //login route
 router.route('/logOut').post(logOutUser) //logout route
 
