@@ -42,8 +42,8 @@ export const createUser = asyncHandler(async (req, res) => {
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  // if user exist...proceed to login
   const existingUser = await User.findOne({ email });
-
   if (existingUser) {
     const isPasswordValid = await bcrypt.compare(
       password,
