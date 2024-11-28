@@ -74,12 +74,14 @@ export const logOutUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Please Login Again!" });
 });
 
-// fetch all users 
+
+// fetch & get all users 
 export const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
 });
 
+// fcn get current user profile
 export const getCurrentUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
