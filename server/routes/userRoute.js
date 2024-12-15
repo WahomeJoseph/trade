@@ -11,6 +11,7 @@ router.route('/create').post(createUser)
 router.route('/login').post(loginUser) //login route
 router.route('/logOut').post(logOutUser) //logout route
 
+// HERE WE ARE WITH MORE PROGRESS
 router.route('./profile')
 router.get(authUsers, getCurrentUserprofile) //get current user profile
 router.put(authUsers, getCurrentUserProfile)
