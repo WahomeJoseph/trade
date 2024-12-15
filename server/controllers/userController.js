@@ -3,20 +3,23 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
 
-// create a new user account
-const createUser = asyncHandler(async (req, res) => {
+// function create a new user account
+export const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
-  if (!username || !email || !password) {
-    throw new Error("All Inputs are Mandatory!.");
+  if (!username || !email || !password) { 
+    res.status(400).json({message: 'All inputs are required!'})
   }
 
   // check if user exist
   const userExists = await User.findOne({ email });
-  if (userExists) res.status(400).send("User already exists");
+  if (userExists)
+    res.status(400).json({message: "User already exists"});
 
+  // password hashing
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
+  // add new user
   const newUser = new User({ username, email, password: hashedPassword });
 
   try {
@@ -35,15 +38,12 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// logic to login a user 
+// fcn for users to login 
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(email);
-  console.log(password);
-
+  //check if user exist...proceed to login
   const existingUser = await User.findOne({ email });
-
   if (existingUser) {
     const isPasswordValid = await bcrypt.compare(
       password,
@@ -59,27 +59,29 @@ export const loginUser = asyncHandler(async (req, res) => {
         email: existingUser.email,
         isAdmin: existingUser.isAdmin,
       });
-      return;
+      return; //exit the function after sending the response
     }
   }
 });
 
-// current user loged out after time out sessions
-export const logoutCurrentUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", {
-    httyOnly: true,
+// fcn to logout current user after time out sessions
+export const logOutUser = asyncHandler(async (req, res) => {
+  res.cookie('jwt', "", {
+    httpOnly: true,
     expires: new Date(0),
   });
 
   res.status(200).json({ message: "Please Login Again!" });
 });
 
-// fetch all users 
+
+// fetch & get all users 
 export const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
 });
 
+// fcn get current user profile
 export const getCurrentUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -90,8 +92,7 @@ export const getCurrentUserProfile = asyncHandler(async (req, res) => {
       email: user.email,
     });
   } else {
-    res.status(404);
-    throw new Error("No Match Found!");
+    res.status(404).json({message: 'No User Found!'})
   }
 });
 
