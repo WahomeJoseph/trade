@@ -26,7 +26,9 @@ const Nav = () => {
     setShowSidebar(false)
   }
   return (
-    <div>Nav</div>
+    <div id='nav-container' style={{zIndex: 999}} className={`${showSidebar ? "hidden" : 'flex'} xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-black w-[4%] hover:w-[15%] h-[100vh] fixed`}>
+      div
+    </div>
   )
 }
 
