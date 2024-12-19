@@ -48,6 +48,24 @@ const Nav = () => {
         <span className='hidden nav-item-name mt-[3rem]'>CART</span>
         </Link>
       </div>
+
+      <ul>
+        {/* sign in */}
+        <li>
+        <Link to='/login' className='flex items-centre transition-transform transform hover: translate-x-2'>
+        <AiOutlineLogin className='mr-2 mt-[3rem]' size={24}/>
+        <span className='hidden nav-item-name mt-[3rem]'>LOGIN</span>
+        </Link>
+        </li>
+        {/* sign up */}
+        <li>
+        <Link to='/logout' className='flex items-centre transition-transform transform hover: translate-x-2'>
+        <AiOutlineUserAdd className='mr-2 mt-[3rem]' size={24}/>
+        <span className='hidden nav-item-name mt-[3rem]'>REGISTER</span>
+        </Link>
+        </li>
+      </ul>
+      
     </div>
   )
 }
