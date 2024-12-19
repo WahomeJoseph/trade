@@ -1,12 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
+import {Outlet} from 'react-router-dom'
+import {ToastContainer} from 'react-toastify'
+import Nav from '../pages/Auth/Nav.jsx'
 import './App.css'
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <h2>Hello</h2>
-    </div>
+    <>
+    <ToastContainer/>
+    <Nav/>
+    <main>
+      <Outlet/>
+    </main>
+    </>
   )
 }
 
