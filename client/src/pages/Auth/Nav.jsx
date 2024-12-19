@@ -27,7 +27,11 @@ const Nav = () => {
   }
   return (
     <div id='nav-container' style={{zIndex: 999}} className={`${showSidebar ? "hidden" : 'flex'} xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-black w-[4%] hover:w-[15%] h-[100vh] fixed`}>
-      div
+      <div className='flex flex-col justify-centre space-y-4'>
+        <Link to='/' className='flex items-centre transition-transform transform hover: translate-x-2'>
+        <AiOutlineHome className='mr-2 mt'/>
+        </Link>
+      </div>
     </div>
   )
 }
