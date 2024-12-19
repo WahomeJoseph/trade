@@ -29,7 +29,23 @@ const Nav = () => {
     <div id='nav-container' style={{zIndex: 999}} className={`${showSidebar ? "hidden" : 'flex'} xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-black w-[4%] hover:w-[15%] h-[100vh] fixed`}>
       <div className='flex flex-col justify-centre space-y-4'>
         <Link to='/' className='flex items-centre transition-transform transform hover: translate-x-2'>
-        <AiOutlineHome className='mr-2 mt'/>
+        <AiOutlineHome className='mr-2 mt-[3rem]' size={24}/>
+        <span className='hidden nav-item-name mt-[3rem]'>HOME</span>
+        </Link>
+
+        <Link to='/shop' className='flex items-centre transition-transform transform hover: translate-x-2'>
+        <AiOutlineShopping className='mr-2 mt-[3rem]' size={24}/>
+        <span className='hidden nav-item-name mt-[3rem]'>SHOP</span>
+        </Link>
+
+        <Link to='/favourites' className='flex items-centre transition-transform transform hover: translate-x-2'>
+        <FaHeart className='mr-2 mt-[3rem]' size={24}/>
+        <span className='hidden nav-item-name mt-[3rem]'>FAVS</span>
+        </Link>
+
+        <Link to='/cart' className='flex items-centre transition-transform transform hover: translate-x-2'>
+        <AiOutlineShoppingCart className='mr-2 mt-[3rem]' size={24}/>
+        <span className='hidden nav-item-name mt-[3rem]'>CART</span>
         </Link>
       </div>
     </div>
