@@ -2,7 +2,7 @@
 import React from 'react'
 import {Outlet} from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
-import Nav from '../pages/Auth/Nav.jsx'
+import Nav from './pages/Auth/Nav'
 import './App.css'
 
 const App = () => {
