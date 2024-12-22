@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
+import { useState } from 'react';
 import { AiOutlineHome, AiOutlineShopping, AiOutlineLogin, AiOutlineUserAdd, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -9,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 const Nav = () => {
   // hooks for dropdown menu
   const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [showSidebar, setShowsidebar] =  useState(false)
+  const [showSidebar, setShowSidebar] =  useState(false)
 
   // toggle the dropdown menu
   const toggleDropdown = () => {
