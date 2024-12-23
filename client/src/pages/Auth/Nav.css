@@ -1,10 +1,10 @@
-#navigation-container {
+#nav-container {
     width: 4%;
     transition: width 0.3s ease-in-out;
     overflow: hidden;
   }
   
-  #navigation-container:hover {
+  #nav-container:hover {
     width: 15%;
   }
   
@@ -14,7 +14,7 @@
     transition: opacity 0.2s ease-in-out;
   }
   
-  #navigation-container:hover .nav-item-name {
+  #nav-container:hover .nav-item-name {
     display: block;
     opacity: 1;
   }
@@ -25,12 +25,12 @@
     transition: opacity 0.2s ease-in-out;
   }
   
-  #navigation-container:hover .search-input {
+  #nav-container:hover .search-input {
     display: block;
     opacity: 1;
   }
   
-  #navigation-container:hover .search-icon {
+  #nav-container:hover .search-icon {
     display: none;
     transition: opacity 0.2s ease-in-out;
   }

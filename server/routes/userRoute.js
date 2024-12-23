@@ -8,7 +8,7 @@ const router = express.Router()
 router.route('/create').post(createUser)
  .get(authUsers, authAdmin, getAllUsers)
 
- http:localhost:2700/api/users/auth
+//  http:localhost:2700/api/users/auth
 router.route('/login').post(loginUser) //login route
 router.route('/logOut').post(logOutUser) //logout route
 
