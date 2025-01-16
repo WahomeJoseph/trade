@@ -9,6 +9,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import Nav from "./pages/Auth/Nav.jsx";
 import "./App.css";
+import { Login } from "./pages/Auth/Login.jsx";
 
 const App = () => {
   return (
@@ -16,7 +17,9 @@ const App = () => {
       <ToastContainer />
       <Nav />
 
-      <Routes></Routes>
+      <Routes>
+        <Route path="/login" element={Login} />
+      </Routes>
       <main>
         <Outlet />
       </main>
