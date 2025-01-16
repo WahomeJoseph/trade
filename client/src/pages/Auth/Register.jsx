@@ -3,6 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Loader } from '../../components/Loader'
 import { useRegisterMutation } from '../../redux/api/UserApi.js'
 import {setCredentials} from '../../redux/features/auth/AuthSlice.js' 
@@ -32,8 +33,15 @@ export const Register = () => {
         }
     }, [navigate, redirect, userInfo]);
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault()
+        try {
+            const result = await register({username, email, password}).unwrap()
+            dispatch(setCredentials(result))
+            toast.success('Registration successful')
+        } catch {
+            toast.error('Registration unsuccessful!')
+        }
     }
     return (
         <div>
