@@ -39,7 +39,6 @@ export const Login = () => {
     }
   }
 
-
     return (
         <div>
             <section className='pl-[10rem flex-flex-wrap'>
@@ -49,19 +48,19 @@ export const Login = () => {
                     <form onSubmit={handleLogin} className='container w-[40rem]'>
                         <div className='my-2'>
                             <label htmlFor="email" className='block text-sm font-semibold text-white'> Email Address</label>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className='mt-1 p-2 border rounded-sm w-full'/>
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' className='mt-1 p-2 border rounded-sm w-full'/>
                         </div>
                         <div className='my-2'>
                             <label htmlFor="password" className='block text-sm font-semibold text-white'>Password</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className='mt-1 p-2 border rounded-sm w-full'/>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mt-1 p-2 border rounded-sm w-full'/>
                         </div>
 
-                        <button disabled={isLoading} className='text-white px-4 py-2 rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
+                        <button disabled={isLoading} className='text-white px-4 py-2 rounded-sm my-4'>{isLoading ? 'Signing Up...' : 'Log In'}</button>
                         {isLoading && <Loader />}
                     </form>
 
                     <div className='mt-4'>
-                        <span className='text-white'>New User? {''}
+                        <span className='text-white'>Have no Account? {''}
                             <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='text-white hover:text-underline'>Register</Link>
                         </span>
                     </div>

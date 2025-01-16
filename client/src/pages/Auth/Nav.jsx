@@ -12,8 +12,8 @@ import { FaHeart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
-import { useLoginMutation } from "../../redux/api/SliceApi.js";
-import { logout } from "../../redux/features/auth/AuthSlice.js";
+import logout from "../../redux/api/SliceApi.js";
+import { useLogoutMutation } from "../../redux/features/auth/AuthSlice.js";
 import { useSelector, useDispatch } from "react-redux";
 const Nav = () => {
   // hooks for dropdown menu
@@ -23,7 +23,7 @@ const Nav = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const logoutApiCall = useLoginMutation();
+  const logoutApiCall = useLogoutMutation();
 
   // toggle the dropdown menu
   const toggleDropdown = () => {
@@ -43,7 +43,7 @@ const Nav = () => {
   const logoutHandler = async () => {
     try {
       await logoutApiCall().unwrap()
-      dispatch(logout())
+      dispatch(logout)
       navigate('/login')
     } catch (error) {
       console.log(error)

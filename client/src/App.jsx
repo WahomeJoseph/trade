@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import Nav from "./pages/Auth/Nav.jsx";
 import "./App.css";
 import { Login } from "./pages/Auth/Login.jsx";
+import { Register } from "./pages/Auth/Register.jsx";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
 
       <Routes>
         <Route path="/login" element={Login} />
+        <Route path="/register" element={Register} />
       </Routes>
       <main>
         <Outlet />
