@@ -4,9 +4,12 @@ import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/UsersApi'
 import { Loader } from '../../components/Loader'
+import { toast } from 'react-toastify'
+import { setCredentials } from "../../redux/features/auth/authSlice";
 
 export const Login = () => {
-    const [data, setData] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -24,20 +27,33 @@ export const Login = () => {
         }
     }, [navigate, redirect, userInfo])
 
+    const handleLogin = async (e) => {
+        e.preventDefault()
+
+        try {
+            const result = await login({email, password}).unwrap()
+            dispatch(setCredentials(result))
+            toast.success('Login successful')
+        } catch (error) {
+            toast.error('Invalid credentials')
+    }
+  }
+
+
     return (
         <div>
             <section className='pl-[10rem flex-flex-wrap'>
                 <div className='mr-16 mt-20'>
                     <h1 className="text-2xl font-semi-bold">Log In</h1>
 
-                    <form className='container w-[40rem]'>
+                    <form onSubmit={handleLogin} className='container w-[40rem]'>
                         <div className='my-2'>
                             <label htmlFor="email" className='block text-sm font-semibold text-white'> Email Address</label>
-                            <input type="email" value={data} onChange={(e) => setData(e.target.value)} className='mt-1 p-2 border rounded-sm w-full'/>
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className='mt-1 p-2 border rounded-sm w-full'/>
                         </div>
                         <div className='my-2'>
                             <label htmlFor="password" className='block text-sm font-semibold text-white'>Password</label>
-                            <input type="email" value={data} onChange={(e) => setData(e.target.value)} className='mt-1 p-2 border rounded-sm w-full'/>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className='mt-1 p-2 border rounded-sm w-full'/>
                         </div>
 
                         <button disabled={isLoading} className='text-white px-4 py-2 rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
