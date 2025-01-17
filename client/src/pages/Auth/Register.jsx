@@ -35,13 +35,27 @@ export const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault()
-        try {
-            const result = await register({username, email, password}).unwrap()
-            dispatch(setCredentials(result))
-            toast.success('Registration successful')
-        } catch {
-            toast.error('Registration unsuccessful!')
+
+        if (username = '') {
+            toast.error('Username cannot be empty!')
         }
+        if (email = '') {
+            toast.error('Email cannot be empty!')
+        }
+        if (password !== confirmPassword) {
+            toast.error('Password must match!')
+        } 
+        else {
+            try {
+                const result = await register({username, email, password}).unwrap()
+                dispatch(setCredentials(result))
+                toast.success('Registration successful')
+            } catch {
+                console.log(error);
+                toast.error('Registration unsuccessful!')
+            }
+        }
+        
     }
     return (
         <div>

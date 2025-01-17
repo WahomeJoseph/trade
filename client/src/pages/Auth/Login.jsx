@@ -35,6 +35,7 @@ export const Login = () => {
             dispatch(setCredentials(result))
             toast.success('Login successful')
         } catch (error) {
+            console.log(error)
             toast.error('Invalid credentials')
     }
   }
