@@ -36,10 +36,10 @@ export const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault()
 
-        if (username = '') {
+        if (username === '') {
             toast.error('Username cannot be empty!')
         }
-        if (email = '') {
+        if (email === '') {
             toast.error('Email cannot be empty!')
         }
         if (password !== confirmPassword) {
