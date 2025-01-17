@@ -65,8 +65,8 @@ export const Register = () => {
 
                     <form onSubmit={handleRegister} className='container w-[40rem]'>
                     <div className='my-2'>
-                            <label htmlFor="email" className='flex flex-row items-center space-x-2 text-sm font-semibold text-white'><CiUser />:Username</label>
-                            <input type="email" value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' className='mt-1 p-2 border rounded-sm w-full'/>
+                            <label htmlFor="username" className='flex flex-row items-center space-x-2 text-sm font-semibold text-white'><CiUser />:Username</label>
+                            <input type="name" value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' className='mt-1 p-2 border rounded-sm w-full'/>
                         </div>
                         <div className='my-2'>
                             <label htmlFor="email" className='block text-sm font-semibold text-white'><MdOutlineMail />:Email Address</label>
