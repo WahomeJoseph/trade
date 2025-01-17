@@ -61,7 +61,7 @@ export const Register = () => {
         <div>
             <section className='pl-[10rem flex-flex-wrap'>
                 <div className='mr-16 mt-20'>
-                    <h1 className="text-2xl font-semi-bold">Register</h1>
+                    <h1 className="text-2xl font-semi-bold">Create New Account</h1>
 
                     <form onSubmit={handleRegister} className='container w-[40rem]'>
                     <div className='my-2'>
