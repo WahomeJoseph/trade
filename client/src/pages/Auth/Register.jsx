@@ -50,7 +50,7 @@ export const Register = () => {
                 const result = await register({username, email, password}).unwrap()
                 dispatch(setCredentials(result))
                 toast.success('Registration successful')
-            } catch {
+            } catch (error) {
                 console.log(error);
                 toast.error('Registration unsuccessful!')
             }
