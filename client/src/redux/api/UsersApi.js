@@ -23,10 +23,11 @@ export const userApiSlice = apiSlice.injectEndpoints({
               body: data,
             }),
           }),
-          profile: builder.query({
-            query: () => ({
+          profile: builder.mutation({
+            query: (data) => ({
               url: `${USERS_URL}/profile`,
-              method: "GET",
+              method: "PUT",
+              body: data,
             }),
           }),
           getUsers: builder.query({
@@ -41,11 +42,16 @@ export const userApiSlice = apiSlice.injectEndpoints({
               url: `${USERS_URL}/${id}`,
               method: "DELETE",
             }),
-            invalidatesTags: ['User'],
+          }),
+          getUserDetails: builder.query({
+            query: (id) => ({
+              url: `${USERS_URL}/${id}`,
+            }),
+            keepUnusedDataFor: 5,
           }),
     })
 })
 
 // endpoint hook
 // `use${Login}Mutation` //how react redux works.
-export const {useLoginMutation, useLogoutMutation, useRegisterMutation, userProfileMutation} = userApiSlice
+export const {useLoginMutation, useLogoutMutation, useRegisterMutation, useProfileMutation, useDeleteUserMutation, useGetUserDetailsQuery, useGetUsersQuery} = userApiSlice
