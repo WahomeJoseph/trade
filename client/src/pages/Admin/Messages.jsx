@@ -13,6 +13,6 @@ export const message = ({variant, children}) => {
         }
     }
     return (
-        <div></div>
+        <div className='{`p-4 rounded-sm ${getVariantClass}}'>{children}</div>
     )
 }
