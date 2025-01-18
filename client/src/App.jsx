@@ -11,6 +11,8 @@ import Nav from "./pages/Auth/Nav.jsx";
 import "./App.css";
 import { Login } from "./pages/Auth/Login.jsx";
 import { Register } from "./pages/Auth/Register.jsx";
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
+import { Profile } from "./pages/User/Profile.jsx";
 
 const App = () => {
   return (
@@ -19,6 +21,10 @@ const App = () => {
       <Nav />
 
       <Routes>
+        <Route path="/" element={<ProtectedRoute/>}>
+          <Route path="profile" element={<Profile/>} />
+        </Route>
+
         <Route path="/login" element={Login} />
         <Route path="/register" element={Register} />
       </Routes>
