@@ -62,4 +62,4 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
 // endpoint hook
 // `use${Login}Mutation` //how react redux works.
-export const {useLoginMutation, useLogoutMutation, useRegisterMutation, useProfileMutation, useDeleteUserMutation, useGetUserDetailsQuery, useGetUsersQuery} = userApiSlice
+export const {useLoginMutation, useLogoutMutation, useRegisterMutation, useProfileMutation, useDeleteUserMutation, useGetUserDetailsQuery, useGetUsersQuery, useUpdateUserMutation} = userApiSlice
