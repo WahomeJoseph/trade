@@ -58,8 +58,8 @@ export const Register = () => {
         
     }
     return (
-        <div>
-            <section className='pl-[10rem flex-flex-wrap'>
+        <div className='flex bg-[url("https://plus.unsplash.com/premium_photo-1686469325065-ed31d17145da?q=80&w=2916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") bg-cover bg-center h-screen'>
+            <section className='pl-[10rem] flex-flex-wrap z-index-10 opacity-80'>
                 <div className='mr-16 mt-20'>
                     <h1 className="text-2xl font-semi-bold">Create New Account</h1>
 
