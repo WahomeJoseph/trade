@@ -13,6 +13,7 @@ import { Login } from "./pages/Auth/Login.jsx";
 import { Register } from "./pages/Auth/Register.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { Profile } from "./pages/User/Profile.jsx";
+import { AdminRoute } from "./components/AdminRoute.jsx";
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
 
         <Route path="/login" element={Login} />
         <Route path="/register" element={Register} />
+
+        {/* Admin */}
+        <Route path="/admin" element={<AdminRoute/>}></Route>
       </Routes>
       <main>
         <Outlet />
