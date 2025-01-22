@@ -14,7 +14,7 @@ import { Register } from "./pages/Auth/Register.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { Profile } from "./pages/User/Profile.jsx";
 import { AdminRoute } from "./components/AdminRoute.jsx";
-import { UsersPage } from "./pages/Admin/UsersPage.jsx";
+// import { UsersPage } from "./pages/Admin/UsersPage.jsx";
 
 const App = () => {
   return (
@@ -32,7 +32,7 @@ const App = () => {
 
         {/* Admin */}
         <Route path="/admin" element={<AdminRoute/>}>
-        <Route path='Users' element={<UsersPage/>}/>
+        {/* <Route path='Users' element={<UsersPage/>}/> */}
         </Route>
 
       </Routes>
