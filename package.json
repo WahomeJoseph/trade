@@ -1,4 +1,14 @@
 {
+  "name": "soko",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "client": "cd client && npm dev",
+    "server": "cd server && npm start",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "start": "node server/index.js"
+  },
   "devDependencies": {
     "concurrently": "^9.1.2"
   }
