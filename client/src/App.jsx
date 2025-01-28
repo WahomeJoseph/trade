@@ -21,7 +21,6 @@ const App = () => {
     <Router>
       <ToastContainer />
       <Nav />
-
       <Routes>
         <Route path="/" element={<ProtectedRoute/>}>
           <Route path="profile" element={<Profile/>} />
