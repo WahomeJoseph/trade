@@ -7,7 +7,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Nav from "./pages/Auth/Nav.jsx";
+import Nav from "./pages/Auth/Navbar.jsx";
 import "./App.css";
 import { Login } from "./pages/Auth/Login.jsx";
 import { Register } from "./pages/Auth/Register.jsx";
