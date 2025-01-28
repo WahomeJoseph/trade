@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/AuthSlice.js";
-import { userProfileMutation } from "../../redux/api/UsersApi";
+import {useProfileMutation} from "../../redux/api/UsersApi";
 import { Loader } from "../../components/Loader.jsx";
 
 export const Profile = () => {
@@ -14,7 +14,7 @@ export const Profile = () => {
     const [confirmPassword, setConfirmPassword] = useState("")
 
     const {userInfo} = useSelector((state) => state.auth)
-    const [updateProfile, { isLoading }] = userProfileMutation()
+    const [updateProfile, { isLoading }] = useProfileMutation()
 
     useEffect(() => {
         setuserName(userInfo.username)

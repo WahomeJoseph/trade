@@ -12,8 +12,8 @@ import { FaHeart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
-import { logout } from "../../redux/api/SliceApi.js";
-import { useLogoutMutation } from "../../redux/features/auth/AuthSlice.js";
+import {logout} from "../../redux/features/auth/AuthSlice.js";
+import {useLogoutMutation} from "../../redux/api/UsersApi.js";
 import { useSelector, useDispatch } from "react-redux";
 const Nav = () => {
   // hooks for dropdown menu
