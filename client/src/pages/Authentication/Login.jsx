@@ -49,7 +49,7 @@ export const Login = () => {
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
             <section className='pl-80 pt-12 items-center flex-flex-wrap opacity-80 mt-20 z-index-10'>
             <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome Back to <strong className='text-[#7231ff] not-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
-                    <h2 className="text-2xl p-4 text-white text-justify font-semi-bold">Log In</h2>
+                    <h2 className="text-4xl p-4 text-white text-center font-bold">Log In</h2>
                     <form onSubmit={handleLogin} className='bg-[#000000] p-8 rounded-md shadow-sm shadow-[#7231ff] w-[40rem]'>
                         <div className='my-2'>
                             <label htmlFor="email" className='block text-xl font-semibold text-white'> Email Address:</label>

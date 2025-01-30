@@ -24,7 +24,7 @@
     "react-router": "^6.26.1",
     "react-router-dom": "^7.1.0",
     "react-slick": "^0.30.2",
-    "react-toastify": "^10.0.5",
+    "react-toastify": "^5.5.0",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^4.0.0"
   },

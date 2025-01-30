@@ -8,10 +8,6 @@ import { Loader } from '../../components/Loader'
 import { useRegisterMutation } from '../../redux/api/UsersApi.js'
 import {setCredentials} from '../../redux/features/auth/AuthSlice.js' 
 
-import { CiUser } from "react-icons/ci";
-import { MdOutlineMail } from "react-icons/md";
-import { RiLockPasswordLine } from "react-icons/ri";
-
 export const Register = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -67,7 +63,7 @@ export const Register = () => {
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
             <section className='pl-80 pt-2 items-center flex-flex-wrap opacity-80 mt-12 z-index-10'>
             <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome To<strong className='text-[#7231ff] not-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
-                    <h2 className="text-2xl p-4 text-white text-justify font-semi-bold">Create New Account</h2>
+                    <h2 className="text-4xl p-4 text-white text-center font-bold">Create New Account</h2>
                     <form onSubmit={handleRegister} className='container p-8 rounded-md shadow-sm shadow-[#7231ff] w-[40rem]'>
                     <div className='my-2'>
                             <label htmlFor="username" className='block text-xl font-semibold text-white'>Username:</label>
