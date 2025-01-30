@@ -113,7 +113,6 @@ export const Navigation = () => {
       </div>
 
       {/* when user is logged in hide the login and register button */}
-      
       {!userInfo && (
         <ul>
         {/* sign in */}
