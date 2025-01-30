@@ -44,10 +44,8 @@ export const Login = () => {
         <div className='flex bg- bg-cover bg-center h-screen'>
             {/* Background Video */}
             <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
-                <source src="./assets/loginbg.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
+                <source src="/loginbg.mp4" type="video/mp4" />
             </video>
-            {/* Overlay for better readability */}
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
             <section className='pl-80 pt-12 items-center flex-flex-wrap opacity-80 mt-20 z-index-10'>
             <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome Back to <strong className='text-red-500 no-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>

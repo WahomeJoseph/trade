@@ -117,7 +117,7 @@ export const Navigation = () => {
             to="/login"
             className="flex items-centre transition-transform transform hover:translate-x-2">
             <AiOutlineLogin className="mr-2 mt-[2rem]" size={24} />
-            <span className="hidden nav-item-name mt-[2rem]">Sign in</span>
+            <span className="hidden nav-item-name mt-[2rem]">Sign In</span>
           </Link>
         </li>
         {/* sign up */}
@@ -126,7 +126,7 @@ export const Navigation = () => {
             to="/register"
             className="flex items-centre transition-transform transform mb-4 hover:translate-x-2">
             <AiOutlineUserAdd className="mr-2 mt-[2rem]" size={24} />
-            <span className="hidden nav-item-name mt-[2rem]">Sign up</span>
+            <span className="hidden nav-item-name mt-[2rem]">Sign Up</span>
           </Link>
         </li>
       </ul>

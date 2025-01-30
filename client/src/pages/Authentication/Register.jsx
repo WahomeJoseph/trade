@@ -67,7 +67,7 @@ export const Register = () => {
             {/* Overlay for better readability */}
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
             <section className='pl-80 pt-2 items-center flex-flex-wrap opacity-80 mt-12 z-index-10'>
-            <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome To<strong className='text-red-500 no-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
+            <span className='text-white text-center text-3xl font-semi-bold'>Welcome To<strong className='text-red-500 not-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
                     <h2 className="text-2xl p-4 text-white text-justify font-semi-bold">Create New Account</h2>
                     <form onSubmit={handleRegister} className='container p-8 rounded-md shadow-sm shadow-[#7231ff] w-[40rem]'>
                     <div className='my-2'>
@@ -96,7 +96,8 @@ export const Register = () => {
                             <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className='text-white hover:text-[#7231ff]'>Log In</Link>
                         </span>
                     </div>
-            </section>
+                    {/* mongodb+srv://ghostbar:<Y3kuPSwn1UNIMX8J>@cluster00.ptra8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster00 */}
+            </section> 
         </div>
     )
 }
