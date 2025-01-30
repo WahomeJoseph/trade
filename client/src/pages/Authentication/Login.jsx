@@ -41,14 +41,14 @@ export const Login = () => {
   }
 
     return (
-        <div className='flex bg- bg-cover bg-center h-screen'>
+        <div className='flex bg-cover bg-center h-screen'>
             {/* Background Video */}
             <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
                 <source src="/loginbg.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
             <section className='pl-80 pt-12 items-center flex-flex-wrap opacity-80 mt-20 z-index-10'>
-            <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome Back to <strong className='text-red-500 no-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
+            <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome Back to <strong className='text-[#7231ff] not-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
                     <h2 className="text-2xl p-4 text-white text-justify font-semi-bold">Log In</h2>
                     <form onSubmit={handleLogin} className='bg-[#000000] p-8 rounded-md shadow-sm shadow-[#7231ff] w-[40rem]'>
                         <div className='my-2'>
