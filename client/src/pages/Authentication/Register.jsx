@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Loader } from '../../components/Loader'
-import { useRegisterMutation } from '../../redux/api/UserApi.js'
+import { useRegisterMutation } from '../../redux/api/UsersApi.js'
 import {setCredentials} from '../../redux/features/auth/AuthSlice.js' 
 
 import { CiUser } from "react-icons/ci";
@@ -19,8 +19,8 @@ export const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const [register, { isLoading }] = useRegisterMutation()
-    const [userInfo] = useSelector((state) => state.auth)
-    const [search] = useLocation()
+    const {userInfo} = useSelector((state) => state.auth)
+    const {search} = useLocation()
     const sp = new URLSearchParams(search)
     const redirect = sp.get('redirect') || '/'
 

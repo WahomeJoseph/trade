@@ -14,9 +14,10 @@ const App = () => {
     <Router>
       <ToastContainer />
       <Navigation />
+
       <Routes>
-        <Route path="/" element={<ProtectedRoute/>}>
-          <Route path="profile" element={<Profile/>} />
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="profile" element={<Profile />} />
         </Route>
         {/* authentication routes */}
         <Route path="/login" element={<Login />} />
