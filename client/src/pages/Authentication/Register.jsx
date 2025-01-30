@@ -58,39 +58,44 @@ export const Register = () => {
         
     }
     return (
-        <div className='flex bg-[url("https://plus.unsplash.com/premium_photo-1686469325065-ed31d17145da?q=80&w=2916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") bg-cover bg-center h-screen'>
-            <section className='pl-[10rem] flex-flex-wrap z-index-10 opacity-80'>
-                <div className='mr-16 mt-20'>
-                    <h1 className="text-2xl font-semi-bold">Create New Account</h1>
-
-                    <form onSubmit={handleRegister} className='container w-[40rem]'>
+        <div className='flex bg-cover bg-center h-screen'>
+            {/* Background Video */}
+            <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
+                <source src="./assets/loginbg.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            {/* Overlay for better readability */}
+            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+            <section className='pl-80 pt-2 items-center flex-flex-wrap opacity-80 mt-12 z-index-10'>
+            <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome To<strong className='text-red-500 no-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
+                    <h2 className="text-2xl p-4 text-white text-justify font-semi-bold">Create New Account</h2>
+                    <form onSubmit={handleRegister} className='container p-8 rounded-md shadow-sm shadow-[#7231ff] w-[40rem]'>
                     <div className='my-2'>
-                            <label htmlFor="username" className='flex flex-row items-center space-x-2 text-sm font-semibold text-white'><CiUser />:Username</label>
-                            <input type="name" value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' className='mt-1 p-2 border rounded-sm w-full'/>
+                            <label htmlFor="username" className='block text-xl font-semibold text-white'>Username</label>
+                            <input type="name" value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
                         </div>
                         <div className='my-2'>
-                            <label htmlFor="email" className='block text-sm font-semibold text-white'><MdOutlineMail />:Email Address</label>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' className='mt-1 p-2 border rounded-sm w-full'/>
+                            <label htmlFor="email" className='block text-xl font-semibold text-white'>Email Address</label>
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
                         </div>
                         <div className='my-2'>
-                            <label htmlFor="password" className='block text-sm font-semibold text-white'><RiLockPasswordLine />:Password</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mt-1 p-2 border rounded-sm w-full'/>
+                            <label htmlFor="password" className='block text-xl font-semibold text-white'>Password</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
                         </div>
                         <div className='my-2'>
-                            <label htmlFor="password" className='block text-sm font-semibold text-white'><RiLockPasswordLine />:Confirm Password</label>
-                            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='confirm Password' className='mt-1 p-2 border rounded-sm w-full'/>
+                            <label htmlFor="password" className='block text-xl font-semibold text-white'>Confirm Password</label>
+                            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='confirm Password' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
                         </div>
 
-                        <button disabled={isLoading} className='text-white px-4 py-2 rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
+                        <button disabled={isLoading} className='text-white border px-4 py-2 cursor-pointer hover:border-[#7231ff] rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
                         {isLoading && <Loader />}
                     </form>
 
                     <div className='mt-4'>
-                        <span className='text-white'>Have an Account? {''}
-                            <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className='text-white hover:text-underline'>Log In</Link>
+                        <span className='text-white text-xl'>Have an Account? {''}
+                            <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className='text-white hover:text-[#7231ff]'>Log In</Link>
                         </span>
                     </div>
-                </div>
             </section>
         </div>
     )
