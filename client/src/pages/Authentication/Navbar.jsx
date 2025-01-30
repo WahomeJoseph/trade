@@ -15,7 +15,7 @@ import "./Nav.css";
 import {logout} from "../../redux/features/auth/AuthSlice.js";
 import {useLogoutMutation} from "../../redux/api/UsersApi.js";
 import { useSelector, useDispatch } from "react-redux";
-const Nav = () => {
+export const Navigation = () => {
   // hooks for dropdown menu
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -140,5 +140,3 @@ const Nav = () => {
     </div>
   );
 };
-
-export default Nav;

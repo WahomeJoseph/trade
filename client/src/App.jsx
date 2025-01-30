@@ -1,39 +1,28 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Nav from "./pages/Auth/Navbar.jsx";
-import "./App.css";
-import { Login } from "./pages/Auth/Login.jsx";
-import { Register } from "./pages/Auth/Register.jsx";
+import { Navigation } from "./pages/Authentication/Navbar.jsx";
+import { Login } from "./pages/Authentication/Login.jsx";
+import { Register } from "./pages/Authentication/Register.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
-import { Profile } from "./pages/User/Profile.jsx";
-import { AdminRoute } from "./components/AdminRoute.jsx";
-// import { UsersPage } from "./pages/Admin/UsersPage.jsx";
+import { Profile } from "./pages/Users/Profile.jsx";
+import { AdminRoute } from "./pages/Admin/AdminRoute.jsx";
 
 const App = () => {
   return (
     <Router>
       <ToastContainer />
-      <Nav />
+      <Navigation />
       <Routes>
         <Route path="/" element={<ProtectedRoute/>}>
           <Route path="profile" element={<Profile/>} />
         </Route>
-
-        <Route path="/login" element={Login} />
-        <Route path="/register" element={Register} />
-
-        {/* Admin */}
-        <Route path="/admin" element={<AdminRoute/>}>
-        {/* <Route path='Users' element={<UsersPage/>}/> */}
-        </Route>
-
+        {/* authentication routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        {/* admin routes */}
+        <Route path="/admin" element={<AdminRoute />}></Route>
       </Routes>
       <main>
         <Outlet />
