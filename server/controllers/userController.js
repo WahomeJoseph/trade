@@ -42,7 +42,6 @@ export const createUser = asyncHandler(async (req, res) => {
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  //check if user exist...proceed to login
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     const isPasswordValid = await bcrypt.compare(
@@ -59,7 +58,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         email: existingUser.email,
         isAdmin: existingUser.isAdmin,
       });
-      return; //exit the function after sending the response
+      return; 
     }
   }
 });
@@ -124,7 +123,7 @@ export const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// delete a user's account
+// delete a users account
 export const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
