@@ -1,6 +1,6 @@
 import express from 'express'
 import {createUser, loginUser, logOutUser, getCurrentUserProfile, getAllUsers, deleteUser, updateUser} from '../controllers/userController.js'
-import {authUsers, authAdmin} from '../utils/AuthUsers.js'
+import {authUsers, authAdmin} from '../middlewares/AuthUsers.js'
 
 const router = express.Router()
 

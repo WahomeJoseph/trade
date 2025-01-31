@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js'
-import asyncHandler from '../middlewares/asyncHandler.js'
+import asyncHandler from './asyncHandler.js'
 
 export const authUsers = asyncHandler(async (req,res,next) => {
   let token
