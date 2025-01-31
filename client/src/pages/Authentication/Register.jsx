@@ -58,7 +58,7 @@ export const Register = () => {
         <div className='flex bg-cover bg-center h-screen'>
             {/* Background Video */}
             <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
-                <source src="./public/loginbg.mp4" type="video/mp4" />
+                <source src="./loginbg.mp4" type="video/mp4" />
             </video>
             {/* Overlay for better readability */}
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>

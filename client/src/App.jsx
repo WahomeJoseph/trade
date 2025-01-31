@@ -8,6 +8,9 @@ import { Register } from "./pages/Authentication/Register.jsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { Profile } from "./pages/Users/Profile.jsx";
 import { AdminRoute } from "./pages/Admin/AdminRoute.jsx";
+import Category from "./pages/Admin/Category.jsx"
+import UsersPage  from "./pages/Admin/UsersPage.jsx"
+import Orders from "./pages/Admin/Orders.jsx"
 
 const App = () => {
   return (
@@ -23,7 +26,11 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         {/* admin routes */}
-        <Route path="/admin" element={<AdminRoute />}></Route>
+        <Route path="/admin" element={<AdminRoute />}>
+        <Route path="users" element={<UsersPage />}/>
+        <Route path="category" element={<Category />}/>
+        <Route path="orders" element={<Orders />}/>
+        </Route>
       </Routes>
       <main>
         <Outlet />

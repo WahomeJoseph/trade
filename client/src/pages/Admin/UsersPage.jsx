@@ -5,7 +5,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import { FiEdit3 } from "react-icons/fi";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import {useDeleteUserMutation, useGetUsersQuery, useUpdateUserMutation} from '../../redux/api/UsersApi.js'
-export const UsersPage = () => {
+ const UsersPage = () => {
     const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
     const [deleteUser] = useDeleteUserMutation();
@@ -20,6 +20,10 @@ export const UsersPage = () => {
     }, [refetch])
 
     return (
-        <div></div>
+        <div>
+            <h2>Our Customers</h2>
+        </div>
     )
 }
+
+export default UsersPage

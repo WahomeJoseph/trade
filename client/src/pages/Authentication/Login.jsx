@@ -32,6 +32,7 @@ export const Login = () => {
 
         try {
             const result = await login({email, password}).unwrap()
+            console.log(result)
             dispatch(setCredentials(result))
             toast.success('Login successful')
         } catch (error) {
@@ -41,7 +42,7 @@ export const Login = () => {
   }
 
     return (
-        <div className='flex bg-cover bg-center h-screen'>
+        <div className='flex w-full bg-cover bg-center h-screen'>
             {/* Background Video */}
             <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
                 <source src="/loginbg.mp4" type="video/mp4" />
