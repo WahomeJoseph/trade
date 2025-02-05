@@ -20,7 +20,6 @@ const Category = () => {
 
   const handleCategory = async (e) => {
     e.preventDefault()
-
     if (!name) {
       toast.error("Category name is required!");
       return
@@ -32,7 +31,7 @@ const Category = () => {
         toast.error(result.error)
       } else {
         setName('')
-        toast.success(`${result.name} is created.`)
+        toast.success(`${result.name} has been created.`)
       }
     } catch (error) {
       console.error(error);
@@ -90,12 +89,11 @@ const Category = () => {
     <div className="ml-[10rem] flex flex-col md:flex-row">
       <AdminMenu />
       <div className="md:w-3/4 p-3">
-        <div className="h-12">Manage Categories</div>
+        <h2 className="h-12 text-xl">Manage Categories</h2>
         <CategoryForm
           value={name}
           setValue={setName}
-          handleSubmit={handleCategory}
-        />
+          handleSubmit={handleCategory}/>
         <br />
         <hr />
         <div className="flex flex-wrap">
@@ -103,14 +101,7 @@ const Category = () => {
             <div key={category._id}>
               <button
                 className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
-                onClick={() => {
-                  {
-                    setModalVisible(true);
-                    setSelectedCategory(category)
-                    setUpdatingName(category.name)
-                  }
-                }}
-              >
+                onClick={() => {{setModalVisible(true), setSelectedCategory(category), setUpdatingName(category.name)}}}>
                 {category.name}
               </button>
             </div>
