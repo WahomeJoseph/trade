@@ -25,7 +25,7 @@ export const authUsers = asyncHandler(async (req,res,next) => {
 export const authAdmin = (req, res, next) => {
 
   if (req.user && req.user.isAdmin) {
-    next()
+    next() //proceed to execute if user is admin
   } else {
     res.status(401).json({message: 'Only Admins are Authorized!'})
   }

@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
 export const connectDB = async () => {
     try {
         await mongoose.connect(
-            'mongodb+srv://ghostbar:Y3kuPSwn1UNIMX8J@cluster00.ptra8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster00'
+            process.env.MONGO_URI
         ). then(() => {
             console.log('DB connected successfully!')
         })

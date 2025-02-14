@@ -1,8 +1,9 @@
 // packages
 import express from 'express'
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
-import userRoute from './routes/orderRoute.js'
+import userRoute from './routes/userRoute.js'
 import categoryRoute from './routes/categoryRoute.js'
 import orderRoute from './routes/orderRoute.js'
 import { connectDB } from './config/connect.js'
@@ -13,12 +14,16 @@ const port = process.env.PORT
 
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use(cors())
 app.use('/api/users', userRoute)
 app.use('/api/category', categoryRoute)
-app.use('/api/order', orderRoute)
+app.use('/api/orders', orderRoute)
 
+app.get('/', (req, res) => {
+    res.send('Welcome To Our Store')
+})
 connectDB().then(() => {
     app.listen(port, () => console.log(`Server running on port: ${port} 🚀`));
 }).catch((error) => {

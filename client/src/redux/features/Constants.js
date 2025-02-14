@@ -1,3 +1,5 @@
-export const CATEGORY_URL = '/api/Category'
-export const USERS_URL = '/api/users'
-export const BASE_URL ='mongodb+srv://ghostbar:<Y3kuPSwn1UNIMX8J>@cluster00.ptra8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster00'
+export const BASE_URL = 'http:localhost:2700'
+export const CATEGORY_URL = `${BASE_URL}/api/category`
+export const ORDER_URL = `${BASE_URL}/api/orders`
+export const PRODUCT_URL = `${BASE_URL}/api/products`
+export const USERS_URL = `${BASE_URL}/api/users`

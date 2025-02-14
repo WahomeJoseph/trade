@@ -4,13 +4,14 @@ import {authUsers, authAdmin} from '../middlewares/AuthUsers.js'
 
 const router = express.Router()
  
-router.route('/create').post(createUser)
- .get(authUsers, authAdmin, getAllUsers)
+router.route('/')
+      .post(createUser)
+      .get(authUsers, authAdmin, getAllUsers)
 
-//  http:localhost:2700/api/users/auth/
-router.route('/login').post(loginUser)
-router.route('/logOut').post(logOutUser) 
+router.post('/api/users/login',loginUser)
+router.post('/api/users/logout',logOutUser) 
 
+// get and update user profile
 router.route('/profile')
       .get(authUsers, getCurrentUserProfile)
       .put(authUsers, updateCurrentUserProfile)
@@ -19,6 +20,6 @@ router.route('/profile')
 router.route('/:id')
       .delete(authUsers, authAdmin, deleteUser)
       .get(authUsers, authAdmin, getUser)
-      .get(authUsers, authAdmin, updateUser)
+      .put(authUsers, authAdmin, updateUser)
 
 export default router
