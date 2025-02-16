@@ -4,12 +4,12 @@ import {authUsers, authAdmin} from '../middlewares/AuthUsers.js'
 
 const router = express.Router()
  
-router.route('/')
+router.route('/register')
       .post(createUser)
       .get(authUsers, authAdmin, getAllUsers)
 
-router.post('/api/users/login',loginUser)
-router.post('/api/users/logout',logOutUser) 
+router.post('/login',loginUser)
+router.post('/logout',logOutUser) 
 
 // get and update user profile
 router.route('/profile')

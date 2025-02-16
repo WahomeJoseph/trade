@@ -50,6 +50,9 @@ export const loginUser = asyncHandler(async (req, res) => {
     );
 
     if (isPasswordValid) {
+      return res.status(401).json({message: 'Invalid Email or Password'})
+    }
+
       genToken(res, existingUser._id);
 
       return res.status(201).json({
@@ -58,8 +61,6 @@ export const loginUser = asyncHandler(async (req, res) => {
         email: existingUser.email,
         isAdmin: existingUser.isAdmin,
       });
-      return; 
-    }
   }
 });
 

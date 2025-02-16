@@ -9,6 +9,7 @@ import { setCredentials } from "../../redux/features/auth/AuthSlice";
 
 export const Login = () => {
     const [email, setEmail] = useState('')
+    
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch()
@@ -32,12 +33,13 @@ export const Login = () => {
 
         try {
             const result = await login({email, password}).unwrap()
-            console.log(result)
+            console.log('Login Successful!', result)
             dispatch(setCredentials(result))
             toast.success('Login successful')
+            navigate(redirect)
         } catch (error) {
-            console.log(error)
-            toast.error('Invalid credentials')
+            console.log('Login Failed!', error)
+            toast.error('Invalid credentials', error?.data?.message)
     }
   }
 
@@ -60,7 +62,7 @@ export const Login = () => {
                             <label htmlFor="password" className='block text-xl font-semibold text-white'>Password:</label>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
                         </div>
-                        <button disabled={isLoading} className='text-white border px-4 py-2 cursor-pointer hover:border-[#7231ff] rounded-sm my-4'>{isLoading ? 'Signing Up...' : 'Log In'}</button>
+                        <button disabled={isLoading} className='text-white border px-4 py-2 cursor-pointer hover:border-[#7231ff] rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
                         {isLoading && <Loader />}
                     </form>
 

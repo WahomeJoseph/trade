@@ -17,9 +17,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(cors())
-app.use('/api/users', userRoute)
-app.use('/api/category', categoryRoute)
-app.use('/api/orders', orderRoute)
+app.use('/users', userRoute)
+app.use('/category', categoryRoute)
+app.use('/orders', orderRoute)
 
 app.get('/', (req, res) => {
     res.send('Welcome To Our Store')
