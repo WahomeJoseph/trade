@@ -1,7 +1,6 @@
-import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 
-const addProduct = asyncHandler(async (req, res) => {
+const addProduct = async (req, res) => {
   try {
     const { name, description, price, category, quantity, brand } = req.fields;
 
@@ -28,9 +27,9 @@ const addProduct = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(400).json(error.message);
   }
-});
+}
 
-const updateProductDetails = asyncHandler(async (req, res) => {
+const updateProductDetails = async (req, res) => {
   try {
     const { name, description, price, category, quantity, brand } = req.fields;
 
@@ -63,9 +62,9 @@ const updateProductDetails = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(400).json(error.message);
   }
-});
+}
 
-const removeProduct = asyncHandler(async (req, res) => {
+const removeProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     res.json(product);
@@ -73,9 +72,9 @@ const removeProduct = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Server error" });
   }
-});
+}
 
-const fetchProducts = asyncHandler(async (req, res) => {
+const fetchProducts = async (req, res) => {
   try {
     const pageSize = 6;
 
@@ -101,9 +100,9 @@ const fetchProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
   }
-});
+}
 
-const fetchProductById = asyncHandler(async (req, res) => {
+const fetchProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (product) {
@@ -116,9 +115,9 @@ const fetchProductById = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(404).json({ error: "Product not found" });
   }
-});
+}
 
-const fetchAllProducts = asyncHandler(async (req, res) => {
+const fetchAllProducts = async (req, res) => {
   try {
     const products = await Product.find({})
       .populate("category")
@@ -130,9 +129,9 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
   }
-});
+}
 
-const addProductReview = asyncHandler(async (req, res) => {
+const addProductReview = async (req, res) => {
   try {
     const { rating, comment } = req.body;
     const product = await Product.findById(req.params.id);
@@ -172,9 +171,9 @@ const addProductReview = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(400).json(error.message);
   }
-});
+}
 
-const fetchTopProducts = asyncHandler(async (req, res) => {
+const fetchTopProducts = async (req, res) => {
   try {
     const products = await Product.find({}).sort({ rating: -1 }).limit(4);
     res.json(products);
@@ -182,9 +181,9 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(400).json(error.message);
   }
-});
+}
 
-const fetchNewProducts = asyncHandler(async (req, res) => {
+const fetchNewProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ _id: -1 }).limit(5);
     res.json(products);
@@ -192,9 +191,9 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(400).json(error.message);
   }
-});
+}
 
-const filterProducts = asyncHandler(async (req, res) => {
+const filterProducts = async (req, res) => {
   try {
     const { checked, radio } = req.body;
 
@@ -208,7 +207,7 @@ const filterProducts = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
   }
-});
+}
 
 export {
   addProduct,

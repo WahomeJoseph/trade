@@ -1,40 +1,22 @@
 import express from "express";
 import formidable from "express-formidable";
-const router = express.Router();
+export const productRouter = express.Router();
 
 // controllers
-import {
-  addProduct,
-  updateProductDetails,
-  removeProduct,
-  fetchProducts,
-  fetchProductById,
-  fetchAllProducts,
-  addProductReview,
-  fetchTopProducts,
-  fetchNewProducts,
-  filterProducts,
-} from "../controllers/productController.js";
-import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
-import checkId from "../middlewares/checkId.js";
+import { addProduct, updateProductDetails, removeProduct, fetchProducts, fetchProductById, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts, filterProducts } from "../controllers/productController.js";
+import { authUsers, authAdmin } from "../middlewares/AuthUsers.js";
 
-router
-  .route("/")
-  .get(fetchProducts)
-  .post(authenticate, authorizeAdmin, formidable(), addProduct);
+productRouter.post('/', fetchProducts)
+  .post(authUsers, authAdmin, formidable(), addProduct);
 
-router.route("/allproducts").get(fetchAllProducts);
-router.route("/:id/reviews").post(authenticate, checkId, addProductReview);
+productRouter.get('/products', fetchAllProducts)
+  .route("/:id/reviews").post(authenticate, checkId, addProductReview);
 
-router.get("/top", fetchTopProducts);
-router.get("/new", fetchNewProducts);
+productRouter.get("/top-products", fetchTopProducts)
+  .get("/new-products", fetchNewProducts);
 
-router
-  .route("/:id")
-  .get(fetchProductById)
-  .put(authenticate, authorizeAdmin, formidable(), updateProductDetails)
-  .delete(authenticate, authorizeAdmin, removeProduct);
+productRouter.get('/:id', fetchProductById)
+  .put(authUsers, authAdmin, formidable(), updateProductDetails)
+  .delete(authUsers, authAdmin, removeProduct);
 
-router.route("/filtered-products").post(filterProducts);
-
-export default router;
+productRouter.post('/filter-products', filterProducts);

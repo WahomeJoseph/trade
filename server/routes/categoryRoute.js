@@ -1,13 +1,14 @@
 import express from "express";
-const router = express.Router();
 import { createCategory, updateCategory, removeCategory, listCategory, readCategory } from "../controllers/categoryController.js";
 import { authUsers, authAdmin } from '../middlewares/AuthUsers.js'
 
-router.route("/").post(authUsers, authAdmin, createCategory);
-router.route("/:categoryId").put(authUsers, authAdmin, updateCategory);
-router.route("/:categoryId").delete(authUsers, authAdmin, removeCategory);
+export const categoryRouter = express.Router();
 
-router.route("/categories").get(listCategory);
-router.route("/:id").get(readCategory);
+categoryRouter.post('/', authUsers, authAdmin, createCategory);
+categoryRouter.put('/:categoryId', authUsers, authAdmin, updateCategory);
+categoryRouter.delete('/:categoryId', authUsers, authAdmin, removeCategory);
 
-export default router;
+categoryRouter.get('/categories', listCategory);
+categoryRouter.get('/:id', readCategory);
+
+export default categoryRouter
