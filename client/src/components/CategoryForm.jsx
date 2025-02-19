@@ -1,39 +1,46 @@
 import PropTypes from 'prop-types';
 
-const CategoryForm = ({ value, setValue, handleSubmit, buttonText = "Submit", handleDelete }) => {
-    return (
-      <div className="p-3">
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            type="text"
-            className="py-3 px-4 border rounded-lg w-full"
-            placeholder="Enter category name.."
-            value={value}
-            onChange={(e) => setValue(e.target.value)}/>
-  
-          <div className="flex justify-between">
-            <button className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 foucs:ring-pink-500 focus:ring-opacity-50">
-              {buttonText}
-            </button>
-  
-            {handleDelete && (
-              <button
-                onClick={handleDelete}
-                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 foucs:ring-red-500 focus:ring-opacity-50">
-                Delete
-              </button>
-            )}
-          </div>
-        </form>
-      </div>
-    )};
+const CategoryForm = ({ value, setValue, handleSubmit, handleDelete }) => {
+  return (
+    <div className="p-4 rounded-sm space-y-3 mt-1 mb-12">
+      <form onSubmit={handleSubmit} className="bg-transparent space-y-4 mt-0">
+        <input
+          type="text"
+          className="py-4 px-4 border bg-gray-900 text-gray-100 rounded-sm w-full focus:outline-none"
+          placeholder="Enter category name.."
+          value={value}
+          onChange={(e) => setValue(e.target.value)} />
 
-  CategoryForm.propTypes = {
-    value: PropTypes.string.isRequired,
-    setValue: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    buttonText: PropTypes.string,
-    handleDelete: PropTypes.func,
-  };
-  
-  export default CategoryForm
+        <div className="flex p-2 justify-between">
+          <button
+            onClick={handleSubmit}
+            className="bg-black border shadow-sm text-white font-bold py-2 px-4 rounded-md hover:bg-[#7231ff] hover:text-white">
+            Submit
+          </button>
+
+          <button
+            onClick={handleDelete}
+            className="bg-[#d21404] border shadow-sm text-white font-bold py-2 px-4 rounded-md hover:bg-[#7231ff] hover:text-white">
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
+  )
+};
+
+CategoryForm.propTypes = {
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
+};
+
+CategoryForm.propTypes = {
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
+};
+
+export default CategoryForm

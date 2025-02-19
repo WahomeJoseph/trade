@@ -1,23 +1,20 @@
 import express from "express";
-const router = express.Router();
-
 import { createOrder, getAllOrders, getUserOrders, countTotalOrders, calculateTotalSales, calcualteTotalSalesByDate, findOrderById, markOrderAsPaid, markOrderAsDelivered } from "../controllers/orderController.js";
-
 import { authUsers, authAdmin } from "../middlewares/AuthUsers.js";
 
-router
+export const orderRouter = express.Router();
+
+orderRouter
   .route("/")
   .post(authUsers, createOrder)
   .get(authUsers, authAdmin, getAllOrders);
 
-router.route("/mine").get(authUsers, getUserOrders);
-router.route("/total-orders").get(countTotalOrders);
-router.route("/total-sales").get(calculateTotalSales);
-router.route("/total-sales-by-date").get(calcualteTotalSalesByDate);
-router.route("/:id").get(authUsers, findOrderById);
-router.route("/:id/pay").put(authUsers, markOrderAsPaid);
-router
+orderRouter.route("/mine").get(authUsers, getUserOrders);
+orderRouter.route("/total-orders").get(countTotalOrders);
+orderRouter.route("/total-sales").get(calculateTotalSales);
+orderRouter.route("/total-sales-by-date").get(calcualteTotalSalesByDate);
+orderRouter.route("/:id").get(authUsers, findOrderById);
+orderRouter.route("/:id/pay").put(authUsers, markOrderAsPaid);
+orderRouter
   .route("/:id/deliver")
   .put(authUsers, authAdmin, markOrderAsDelivered);
-
-export default router;

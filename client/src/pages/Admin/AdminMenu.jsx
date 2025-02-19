@@ -3,7 +3,7 @@ import React from 'react'
 
 const AdminMenu = () => {
   return (
-    <div>AdminMenu</div>
+    <div className='text-3xl text uppercase font-bold tracking-wide bg-gray-100 sm:w-full p-6'>Admin Panel</div>
   )
 }
 

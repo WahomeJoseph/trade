@@ -9,16 +9,16 @@ import { setCredentials } from "../../redux/features/auth/AuthSlice";
 
 export const Login = () => {
     const [email, setEmail] = useState('')
-    
+
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const [login, { isLoading }] = useLoginMutation()
-    const {userInfo} = useSelector((state) => state.auth)
+    const { userInfo } = useSelector((state) => state.auth)
 
-    const {search} = useLocation()
+    const { search } = useLocation()
     const sp = new URLSearchParams(search)
     const redirect = sp.get('redirect') || '/'
 
@@ -32,7 +32,7 @@ export const Login = () => {
         e.preventDefault()
 
         try {
-            const result = await login({email, password}).unwrap()
+            const result = await login({ email, password }).unwrap()
             console.log('Login Successful!', result)
             dispatch(setCredentials(result))
             toast.success('Login successful')
@@ -40,37 +40,34 @@ export const Login = () => {
         } catch (error) {
             console.log('Login Failed!', error)
             toast.error('Invalid credentials', error?.data?.message)
+        }
     }
-  }
 
     return (
-        <div className='flex w-full bg-cover bg-center h-screen'>
-            {/* Background Video */}
-            <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
-                <source src="/loginbg.mp4" type="video/mp4" />
-            </video>
+        <div className='flex bg-cover bg-center h-screen'>
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-            <section className='pl-80 pt-12 items-center flex-flex-wrap opacity-80 mt-20 z-index-10'>
-            <span className='text-white text-center text-3xl italic font-semi-bold'>Welcome Back to <strong className='text-[#7231ff] not-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
-                    <h2 className="text-4xl p-4 text-white text-center font-bold">Log In</h2>
-                    <form onSubmit={handleLogin} className='bg-[#000000] p-8 rounded-md shadow-sm shadow-[#7231ff] w-[40rem]'>
-                        <div className='my-2'>
-                            <label htmlFor="email" className='block text-xl font-semibold text-white'> Email Address:</label>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
-                        </div>
-                        <div className='my-2'>
-                            <label htmlFor="password" className='block text-xl font-semibold text-white'>Password:</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]'/>
-                        </div>
-                        <button disabled={isLoading} className='text-white border px-4 py-2 cursor-pointer hover:border-[#7231ff] rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
-                        {isLoading && <Loader />}
-                    </form>
 
-                    <div className='mt-4'>
-                        <span className='text-white text-xl'>Have no Account? {''}
-                            <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='text-white hover:text-[#7231ff]'>Register</Link>
-                        </span>
+            <section className='md:ml-80 sm:mt-10 px-10 mx-auto md:pt-12 items-center flex-flex-wrap opacity-80 md:mt-20 z-index-10'>
+                <span className='text-gray-100 tracking-wide text-center text-2xl italic font-semi-bold'>Welcome Back to <strong className='text-[#7231ff] bg-gray-900 p-2 not-italic'> Walevi Liqour Store 🍻 🥃 🍾 </strong>.</span>
+                <h2 className="text-[3rem] p-4 text-white font-bold">Log In</h2>
+                <form onSubmit={handleLogin} className='sm:flex sm:flex-col sm:flex-wrap sm:flex-grow-1 sm:mx-auto sm:mr-5 bg-gray-900 p-8 rounded-md shadow-sm shadow-[#7231ff] sm:w-[40rem]'>
+                    <div className='my-2'>
+                        <label htmlFor="email" className='block text-xl font-semibold text-white'> Email Address:</label>
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email Address' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]' />
                     </div>
+                    <div className='my-2'>
+                        <label htmlFor="password" className='block text-xl font-semibold text-white'>Password:</label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='mt-1 p-4 text-white border rounded-sm w-full border border-[#7231ff] outline-none focus:outline-[#7231ff]' />
+                    </div>
+                    <button disabled={isLoading} className='w-1/4 text-white border px-4 py-2 cursor-pointer hover:border-[#7231ff] rounded-sm my-4'>{isLoading ? 'Signing In...' : 'Log In'}</button>
+                    {isLoading && <Loader />}
+                </form>
+
+                <div className='mt-4'>
+                    <span className='text-white text-xl'>Have no Account? {''}
+                        <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='text-white hover:text-[#7231ff]'>Register</Link>
+                    </span>
+                </div>
             </section>
         </div>
     )

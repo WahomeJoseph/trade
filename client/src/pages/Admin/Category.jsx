@@ -21,7 +21,7 @@ const Category = () => {
   const handleCategory = async (e) => {
     e.preventDefault()
     if (!name) {
-      toast.error("Category name is required!");
+      toast.error("Category Name is Required!");
       return
     }
 
@@ -86,22 +86,23 @@ const Category = () => {
   }
 
   return (
-    <div className="ml-[10rem] flex flex-col md:flex-row">
+    <div className="p-4 md:ml-[16rem] md:mr-[12rem] sm:ml-10 bg-cover items-center h-screen">
       <AdminMenu />
-      <div className="md:w-3/4 p-3">
-        <h2 className="h-12 text-xl">Manage Categories</h2>
+      <div className="flex flex-col bg-cover bg-black rounded-sm shadow-xl w-full sm:mx-auto p-4 space-y-3">
+        <h2 className="text-2xl font-semi-bold md:text-left p-2 md:ml-2 sm:text-center text-gray-100">Manage Categories</h2>
+
         <CategoryForm
           value={name}
           setValue={setName}
-          handleSubmit={handleCategory}/>
-        <br />
-        <hr />
-        <div className="flex flex-wrap">
+          handleSubmit={handleCategory}
+        />
+
+        <div className="flex gap-2 border-t-2 rounded-t border-gray-900 p-4 max-h-[12rem] overflow-y-auto">
           {categories?.map((category) => (
             <div key={category._id}>
               <button
-                className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
-                onClick={() => {{setModalVisible(true), setSelectedCategory(category), setUpdatingName(category.name)}}}>
+                className="bg-gray-100 border font-semi-bold text-xl py-2 px-4 shadow-md rounded-md m-3 sm:truncate  hover:bg-gray-900 hover:text-white focus:outline-none"
+                onClick={() => { { setModalVisible(true), setSelectedCategory(category), setUpdatingName(category.name) } }}>
                 {category.name}
               </button>
             </div>

@@ -4,8 +4,9 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import { userRouter } from './routes/userRoute.js'
-import categoryRouter from './routes/categoryRoute.js'
-import orderRouter from './routes/orderRoute.js'
+import { productRouter } from './routes/productRoute.js'
+import { categoryRouter } from './routes/categoryRoute.js'
+import { orderRouter } from './routes/orderRoute.js'
 import { connectDB } from './config/connect.js'
 
 dotenv.config()
@@ -18,6 +19,7 @@ app.use(cookieParser())
 app.use(cors())
 
 app.use('/users', userRouter)
+app.use('/products', productRouter)
 app.use('/category', categoryRouter)
 app.use('/orders', orderRouter)
 

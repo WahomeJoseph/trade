@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { genToken } from '../utils/createToken.js'
 import Users from "../models/userModel.js";
+import { isValidObjectId } from "mongoose";
 
 // function create a new user account
 export const createUser = async (req, res) => {
@@ -14,25 +15,25 @@ export const createUser = async (req, res) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     res.status(400).json({ message: 'Invalid email format!' });
-    return 
+    return
   }
   // password validation
   if (password.length < 8) {
     res.status(400).json({ message: 'Password must be at least 8 characters long!' });
-    return 
+    return
   }
 
   // check if user exist
   const userExists = await Users.findOne({ email })
   if (userExists) {
     res.status(400).json({ message: "User already exist!" });
-    return 
+    return
   }
 
   // password hashing
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  
+
   // add new user
   try {
     const newUser = new Users({ username, email, isAdmin, password: hashedPassword });
@@ -47,44 +48,48 @@ export const createUser = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: 'Failed to create new user' });
-    return 
+    return
   }
 }
 
-// fcn for users to login 
+// fxn for users to login 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const existingUser = await Users.findOne({ email });
-  if (existingUser) {
-    const isPasswordValid = await bcrypt.compare(
-      existingUser.password,
-      password
-    );
-
-    if (isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid Email or Password' })
+    const existingUser = await Users.findOne({ email });
+    if (!existingUser) {
+      res.status(400).json({message: 'User Not Found!'})
+      return 
     }
 
-    genToken(res, existingUser._id);
+    const isPasswordValid = await bcrypt.compare(password,existingUser.password);
+    if (!isPasswordValid) {
+      res.status(401).json({message: 'Invalid Email or Password!'})
+      return 
+    }
 
-    return res.status(201).json({
-      _id: existingUser._id,
-      username: existingUser.username,
-      email: existingUser.email,
-      isAdmin: existingUser.isAdmin,
-    });
+      genToken(res, existingUser._id);
+      return res.status(200).json({
+        message: 'Login Successful!',
+        _id: existingUser._id,
+        username: existingUser.username,
+        email: existingUser.email,
+        isAdmin: existingUser.isAdmin,
+      });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error!' }, error.message)
   }
 }
 
-// fcn to logout current user after time out sessions
+// fxn to logout current user after timeout sessions
 export const logOutUser = async (req, res) => {
   res.cookie('jwt', "", {
     httpOnly: true,
     expires: new Date(0),
   });
 
-  return res.status(200).json({ message: "Please Login Again!" });
+  return res.status(200).json({ message: "User is logged out.Proceed to login!" });
 }
 
 

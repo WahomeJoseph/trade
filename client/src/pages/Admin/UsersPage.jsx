@@ -21,7 +21,7 @@ import {useDeleteUserMutation, useGetUsersQuery, useUpdateUserMutation} from '..
 
     return (
         <div>
-            <h2>Our Customers</h2>
+            <h2>Esteemed Customers</h2>
         </div>
     )
 }

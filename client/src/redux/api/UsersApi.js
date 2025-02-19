@@ -3,6 +3,7 @@ import { USERS_URL } from "../features/Constants";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    // login
     login: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/login`,
@@ -10,12 +11,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    // logout
     logout: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
         method: "POST",
       }),
     }),
+    // register : create account
     register: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/register`,
@@ -23,6 +26,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    // get profile
     profile: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/profile`,
@@ -30,6 +34,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    // get user
     getUsers: builder.query({
       query: () => ({
         url: [USERS_URL],
@@ -37,18 +42,21 @@ export const userApiSlice = apiSlice.injectEndpoints({
       providesTags: ['User'],
       keepUnusedDataFor: 5,
     }),
+    // delete
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `${USERS_URL}/${id}`,
         method: "DELETE",
       }),
     }),
+    // get user details
     getUserDetails: builder.query({
       query: (id) => ({
         url: `${USERS_URL}/${id}`,
       }),
       keepUnusedDataFor: 5,
     }),
+    // update user profile
     updateUser: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/${data.userId}`,
@@ -60,6 +68,4 @@ export const userApiSlice = apiSlice.injectEndpoints({
   })
 })
 
-// endpoint hook
-// `use${Login}Mutation` //how react redux works.
 export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useProfileMutation, useDeleteUserMutation, useGetUserDetailsQuery, useGetUsersQuery, useUpdateUserMutation } = userApiSlice
