@@ -1,10 +1,9 @@
 import Product from "../models/productModel.js";
 
-const addProduct = async (req, res) => {
+// add a new product
+export const addProduct = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
-
-    // Validation
+    const { name, description, price, category, quantity, brand } = req.body
     switch (true) {
       case !name:
         return res.json({ error: "Name is required" });
@@ -20,20 +19,19 @@ const addProduct = async (req, res) => {
         return res.json({ error: "Quantity is required" });
     }
 
-    const product = new Product({ ...req.fields });
+    const product = new Product({ ...req.body })
     await product.save();
-    res.json(product);
+    res.status(200).json({ message: 'Product Added Succesfully', product });
+
   } catch (error) {
-    console.error(error);
-    res.status(400).json(error.message);
+    res.status(401).json({ message: 'Failed to Add Product', error: error.message });
   }
 }
 
-const updateProductDetails = async (req, res) => {
+// update a product
+export const updateProduct = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
-
-    // Validation
+    const { name, description, price, category, quantity, brand } = req.body;
     switch (true) {
       case !name:
         return res.json({ error: "Name is required" });
@@ -49,42 +47,36 @@ const updateProductDetails = async (req, res) => {
         return res.json({ error: "Quantity is required" });
     }
 
-    const product = await Product.findByIdAndUpdate(
-      req.params.id,
-      { ...req.fields },
-      { new: true }
-    );
-
+    const product = await Product.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
     await product.save();
+    res.status(200).json({ message: 'Product Updated Successfully!', product });
 
-    res.json(product);
   } catch (error) {
-    console.error(error);
-    res.status(400).json(error.message);
+    res.status(400).json({ message: 'Failed to Update Product!', error: error.message });
   }
 }
 
-const removeProduct = async (req, res) => {
+// remove a product
+export const removeProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
-    res.json(product);
+    res.status(200).json({ message: 'Product Deleted Successfully!', product });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ message: 'Failed to Delete Product!', error: error.message });
   }
 }
 
-const fetchProducts = async (req, res) => {
+// fetch only the indicated amout of products
+export const fetchProducts = async (req, res) => {
   try {
-    const pageSize = 6;
-
+    const pageSize = 3;
     const keyword = req.query.keyword
-      ? {
-          name: {
-            $regex: req.query.keyword,
-            $options: "i",
-          },
-        }
+     ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
       : {};
 
     const count = await Product.countDocuments({ ...keyword });
@@ -97,53 +89,48 @@ const fetchProducts = async (req, res) => {
       hasMore: false,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
 }
 
-const fetchProductById = async (req, res) => {
+// fetch a single product
+export const fetchProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (product) {
-      return res.json(product);
+      res.status(200).json({ message: 'Product Fetched Successfully!', product });
     } else {
-      res.status(404);
-      throw new Error("Product not found");
+      res.status(404).json({ message: 'No Product Found!' })
     }
   } catch (error) {
-    console.error(error);
-    res.status(404).json({ error: "Product not found" });
+    res.status(500).json({ message: 'Internal server error!', error: error.message });
   }
 }
 
-const fetchAllProducts = async (req, res) => {
+// fetch all products
+export const fetchAllProducts = async (req, res) => {
   try {
     const products = await Product.find({})
       .populate("category")
       .limit(12)
       .sort({ createAt: -1 });
-
-    res.json(products);
+    res.status(200).json({ message: 'Products Loaded Successfully!', products });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ message: 'Internal Server Error!', error: error.message });
   }
 }
 
-const addProductReview = async (req, res) => {
+// add review to a product
+export const addProductReview = async (req, res) => {
   try {
     const { rating, comment } = req.body;
     const product = await Product.findById(req.params.id);
 
     if (product) {
-      const alreadyReviewed = product.reviews.find(
-        (r) => r.user.toString() === req.user._id.toString()
-      );
+      const alreadyReviewed = product.reviews.find((r) => r.user.toString() === req.user._id.toString());
 
       if (alreadyReviewed) {
-        res.status(400);
-        throw new Error("Product already reviewed");
+        res.status(400).json({ message: 'Product Already Reviewed!' });
       }
 
       const review = {
@@ -154,7 +141,6 @@ const addProductReview = async (req, res) => {
       };
 
       product.reviews.push(review);
-
       product.numReviews = product.reviews.length;
 
       product.rating =
@@ -162,18 +148,17 @@ const addProductReview = async (req, res) => {
         product.reviews.length;
 
       await product.save();
-      res.status(201).json({ message: "Review added" });
+      res.status(200).json({ message: 'Product Review Added!' });
     } else {
-      res.status(404);
-      throw new Error("Product not found");
+      res.status(404).json({ message: 'Product Review not Added!' })
     }
   } catch (error) {
-    console.error(error);
-    res.status(400).json(error.message);
+    res.status(500).json({message: 'Internal Server Error', error:error.message});
   }
 }
 
-const fetchTopProducts = async (req, res) => {
+// filter by getting top products based on the rating and reviews
+export const fetchTopProducts = async (req, res) => {
   try {
     const products = await Product.find({}).sort({ rating: -1 }).limit(4);
     res.json(products);
@@ -183,7 +168,8 @@ const fetchTopProducts = async (req, res) => {
   }
 }
 
-const fetchNewProducts = async (req, res) => {
+// filter by getting newest products
+export const fetchNewProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ _id: -1 }).limit(5);
     res.json(products);
@@ -193,7 +179,8 @@ const fetchNewProducts = async (req, res) => {
   }
 }
 
-const filterProducts = async (req, res) => {
+// filter products based on price
+export const filterProducts = async (req, res) => {
   try {
     const { checked, radio } = req.body;
 
@@ -208,16 +195,3 @@ const filterProducts = async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 }
-
-export {
-  addProduct,
-  updateProductDetails,
-  removeProduct,
-  fetchProducts,
-  fetchProductById,
-  fetchAllProducts,
-  addProductReview,
-  fetchTopProducts,
-  fetchNewProducts,
-  filterProducts,
-};

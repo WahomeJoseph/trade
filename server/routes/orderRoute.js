@@ -4,17 +4,14 @@ import { authUsers, authAdmin } from "../middlewares/AuthUsers.js";
 
 export const orderRouter = express.Router();
 
-orderRouter
-  .route("/")
-  .post(authUsers, createOrder)
+orderRouter.post('/', authUsers, createOrder)
   .get(authUsers, authAdmin, getAllOrders);
 
-orderRouter.route("/mine").get(authUsers, getUserOrders);
-orderRouter.route("/total-orders").get(countTotalOrders);
-orderRouter.route("/total-sales").get(calculateTotalSales);
-orderRouter.route("/total-sales-by-date").get(calcualteTotalSalesByDate);
-orderRouter.route("/:id").get(authUsers, findOrderById);
-orderRouter.route("/:id/pay").put(authUsers, markOrderAsPaid);
-orderRouter
-  .route("/:id/deliver")
-  .put(authUsers, authAdmin, markOrderAsDelivered);
+orderRouter.get('/mine', authUsers, getUserOrders);
+orderRouter.get('/total-orders', countTotalOrders);
+orderRouter.get('/total-sales', calculateTotalSales);
+orderRouter.get('/total-sales-by-date', calcualteTotalSalesByDate);
+orderRouter.get('/:id', authUsers, findOrderById);
+orderRouter.put('/:id/pay', authUsers, markOrderAsPaid);
+
+orderRouter.put('/:id/deliver', authUsers, authAdmin, markOrderAsDelivered);

@@ -4,7 +4,7 @@ import { useCreateCategoryMutation, useUpdateCategoryMutation, useDeleteCategory
 import { toast } from "react-toastify"
 import CategoryForm from "../../components/CategoryForm.jsx"
 import Modal from "../../components/Modal.jsx"
-import AdminMenu from "./AdminMenu.jsx"
+import { AdminMenu } from "./AdminMenu.jsx"
 
 const Category = () => {
   const { data: categories } = useFetchCategoriesQuery()

@@ -31,8 +31,7 @@ const createOrder = async (req, res) => {
     const { orderItems, shippingAddress, paymentMethod } = req.body;
 
     if (orderItems && orderItems.length === 0) {
-      res.status(400);
-      throw new Error("No order items");
+      res.status(404).json({message: 'No Orders Items Found!'});
     }
 
     const itemsFromDB = await Product.find({
@@ -45,8 +44,7 @@ const createOrder = async (req, res) => {
       );
 
       if (!matchingItemFromDB) {
-        res.status(404);
-        throw new Error(`Product not found: ${itemFromClient._id}`);
+        res.status(404).json(`{message: 'Product Not Found!', ${itemFromClient._id}}`)
       }
 
       return {
