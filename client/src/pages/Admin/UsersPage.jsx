@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { FaTrashCan } from "react-icons/fa6";
 import { FiEdit3 } from "react-icons/fi";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";

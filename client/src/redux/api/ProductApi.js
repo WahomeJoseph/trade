@@ -1,5 +1,5 @@
-import { PRODUCT_URL } from "../features/Constants";
-import { apiSlice } from "./SliceApi";
+import { PRODUCT_URL } from "../features/Constants"
+import { apiSlice } from "./SliceApi"
 
 export const productApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -53,14 +53,14 @@ export const productApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    // upload product image 
-    uploadProductImage: builder.mutation({
-      query: (data) => ({
-        url: `${PRODUCT_URL}`,
-        method: "POST",
-        body: data,
-      }),
-    }),
+    // // upload product image 
+    // uploadProductImage: builder.mutation({
+    //   query: (data) => ({
+    //     url: `${PRODUCT_URL}`,
+    //     method: "POST",
+    //     body: data,
+    //   }),
+    // }),
 
     // delete a product
     deleteProduct: builder.mutation({
@@ -101,7 +101,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       }),
     }),
   }),
-});
+})
 
 export const {
   useGetProductByIdQuery,
@@ -114,6 +114,6 @@ export const {
   useCreateReviewMutation,
   useGetTopProductsQuery,
   useGetNewProductsQuery,
-  useUploadProductImageMutation,
+  // useUploadProductImageMutation,
   useGetFilteredProductsQuery,
-} = productApiSlice;
+} = productApiSlice

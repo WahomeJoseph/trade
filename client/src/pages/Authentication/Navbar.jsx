@@ -5,10 +5,10 @@ import { AiOutlineHome, AiOutlineShopping, AiOutlineLogin, AiOutlineUserAdd, AiO
 import { FaHeart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 import { logout } from "../../redux/features/auth/AuthSlice.js";
-import { toast } from "react-toastify";
 import { useLogoutMutation } from "../../redux/api/UsersApi.js";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -41,7 +41,7 @@ export const Navigation = () => {
     try {
       await logoutApiCall().unwrap()
       dispatch(logout())
-      toast.success('Logging Out Successful')
+      toast.success('Logging Out!')
       navigate('/login')
     } catch (error) {
       console.error(error);

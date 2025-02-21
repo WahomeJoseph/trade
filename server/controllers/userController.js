@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import { genToken } from '../utils/createToken.js'
 import Users from "../models/userModel.js";
-import { isValidObjectId } from "mongoose";
 
 // function create a new user account
 export const createUser = async (req, res) => {
@@ -89,7 +88,7 @@ export const logOutUser = async (req, res) => {
     expires: new Date(0),
   });
 
-  return res.status(200).json({ message: "User is logged out.Proceed to login!" });
+  return res.status(200).json({ message: "User is logged out. Proceed to login!" });
 }
 
 

@@ -13,10 +13,10 @@ export const authUsers = async (req,res,next) => {
      req.user = await User.findById(decoded.userId).select('-password')
      next() //proceed to the next request
    } catch (error) {
-     res.status(401).json({message: 'Authentication Required!'})
+     res.status(401).json({message: 'Authentication Required! No tokens found!'})
    }
  } else {
-   res.status(401).json({message: 'Authentication Required! No tokens found!'})
+   res.status(401).json({message: 'Authentication Required!'})
  }
 }
 

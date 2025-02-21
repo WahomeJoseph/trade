@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react"
 import { useCreateCategoryMutation, useUpdateCategoryMutation, useDeleteCategoryMutation, useFetchCategoriesQuery } from "../../redux/api/CategoryApi.js";
-import { toast } from "react-toastify"
+import { toast } from "react-hot-toast"
 import CategoryForm from "../../components/CategoryForm.jsx"
 import Modal from "../../components/Modal.jsx"
 import { AdminMenu } from "./AdminMenu.jsx"

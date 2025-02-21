@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/AuthSlice.js";
 import { useProfileMutation } from "../../redux/api/UsersApi";
-import { Loader } from "../../components/Loader.jsx";
+// import { Loader } from "../../components/Loader.jsx";
 
 export const Profile = () => {
     const [username, setuserName] = useState("")

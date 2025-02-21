@@ -28,7 +28,7 @@ app.use('/orders', orderRouter)
 app.use('/uploads', uploadRouter)
 
 const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, 'server', 'uploads')))
+app.use('/uploads', express.static(path.join( __dirname, 'server', 'uploads')))
 
 app.get('/', (req, res) => {
     res.send('Welcome To Our Store')

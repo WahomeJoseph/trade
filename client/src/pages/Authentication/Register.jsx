@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { Loader } from '../../components/Loader'
 import { useRegisterMutation } from '../../redux/api/UsersApi.js'
 import { setCredentials } from '../../redux/features/auth/AuthSlice.js'
@@ -32,12 +32,9 @@ export const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault()
 
-        if (!username) {
-            toast.error('Username cannot be empty!')
+        if (!username || !email) {
+            toast.error('All inputs are required')
             isLoading(false)
-        }
-        if (!email) {
-            toast.error('Email cannot be empty!')
         }
         if (password !== confirmPassword) {
             toast.error('Password must match!')
@@ -50,11 +47,11 @@ export const Register = () => {
                 navigate('/login')
             } catch (error) {
                 console.log(error);
-                toast.error('Registration unsuccessful!')
+                toast.error('Failed to Register Account!')
             }
         }
-
     }
+    
     return (
         <div className='flex bg-cover bg-center h-screen'>
             <div className="absolute inset-0 bg-black bg-opacity-50"></div>
