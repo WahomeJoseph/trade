@@ -1,13 +1,16 @@
 // packages
 import express from 'express'
+import path from 'path'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
+
 import { userRouter } from './routes/userRoute.js'
 import { productRouter } from './routes/productRoute.js'
 import { categoryRouter } from './routes/categoryRoute.js'
 import { orderRouter } from './routes/orderRoute.js'
 import { connectDB } from './config/connect.js'
+import { uploadRouter } from './routes/uploadRoute.js'
 
 dotenv.config()
 const port = process.env.PORT
@@ -22,6 +25,10 @@ app.use('/users', userRouter)
 app.use('/products', productRouter)
 app.use('/category', categoryRouter)
 app.use('/orders', orderRouter)
+app.use('/uploads', uploadRouter)
+
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, 'server', 'uploads')))
 
 app.get('/', (req, res) => {
     res.send('Welcome To Our Store')

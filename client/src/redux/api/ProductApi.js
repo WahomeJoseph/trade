@@ -13,6 +13,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       providesTags: ["Products"],
     }),
 
+    // fetch a single product
     getProductById: builder.query({
       query: (productId) => `${PRODUCT_URL}/${productId}`,
       providesTags: (result, error, productId) => [
@@ -20,10 +21,12 @@ export const productApiSlice = apiSlice.injectEndpoints({
       ],
     }),
 
+    // fetch all products
     allProducts: builder.query({
-      query: () => `${PRODUCT_URL}/allProducts`,
+      query: () => `${PRODUCT_URL}/all-products`,
     }),
 
+    // fetch a product details
     getProductDetails: builder.query({
       query: (productId) => ({
         url: `${PRODUCT_URL}/${productId}`,
@@ -31,6 +34,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
 
+    // add a new product
     createProduct: builder.mutation({
       query: (productData) => ({
         url: `${PRODUCT_URL}`,
@@ -40,6 +44,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["Product"],
     }),
 
+    // update a product
     updateProduct: builder.mutation({
       query: ({ productId, formData }) => ({
         url: `${PRODUCT_URL}/${productId}`,
@@ -48,14 +53,16 @@ export const productApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    // upload product image 
     uploadProductImage: builder.mutation({
       query: (data) => ({
-        url: `${UPLOAD_URL}`,
+        url: `${PRODUCT_URL}`,
         method: "POST",
         body: data,
       }),
     }),
 
+    // delete a product
     deleteProduct: builder.mutation({
       query: (productId) => ({
         url: `${PRODUCT_URL}/${productId}`,
@@ -64,6 +71,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       providesTags: ["Product"],
     }),
 
+    // add review and rating on products
     createReview: builder.mutation({
       query: (data) => ({
         url: `${PRODUCT_URL}/${data.productId}/reviews`,
@@ -72,19 +80,22 @@ export const productApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    // filter top rated products
     getTopProducts: builder.query({
       query: () => `${PRODUCT_URL}/top`,
       keepUnusedDataFor: 5,
     }),
 
+    // filter newest products
     getNewProducts: builder.query({
       query: () => `${PRODUCT_URL}/new`,
       keepUnusedDataFor: 5,
     }),
 
+    // filter
     getFilteredProducts: builder.query({
       query: ({ checked, radio }) => ({
-        url: `${PRODUCT_URL}/filtered-products`,
+        url: `${PRODUCT_URL}/filter`,
         method: "POST",
         body: { checked, radio },
       }),

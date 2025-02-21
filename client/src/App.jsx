@@ -11,6 +11,7 @@ import { AdminRoute } from "./pages/Admin/AdminRoute.jsx";
 import Category from "./pages/Admin/Category.jsx"
 import UsersPage from "./pages/Admin/UsersPage.jsx"
 import { Orders } from "./pages/Admin/Orders.jsx"
+import { Product } from "./pages/Admin/Product.jsx";
 
 const App = () => {
   return (
@@ -25,12 +26,15 @@ const App = () => {
         {/* authentication routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
         {/* admin routes */}
         <Route path="/admin" element={<AdminRoute />}>
           <Route path="users" element={<UsersPage />} />
           <Route path="category" element={<Category />} />
+          <Route path="products" element={<Product />} />
           <Route path="orders" element={<Orders />} />
         </Route>
+
       </Routes>
       <main>
         <Outlet />
