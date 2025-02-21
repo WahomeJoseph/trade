@@ -73,7 +73,7 @@ export const Product = () => {
     return (
         <div className='relative flex min-h-screen bg-transparent items-center justify-center sm:mx-auto py-10 sm:px-20 md:px-[12rem]'>
             <div className='absolute inset-0 bg-black bg-opacity-50'></div>
-            <div className='relative w-full grid grid-cols-1 p-10 shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] p-6'>
+            <div className='relative w-full grid grid-cols-1 p-10 md:mx-10 sm:mx-4 shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] mt-6'>
                 <AdminMenu />
                 {/* <div className='max-w-[30rem]'>
                     <AdminMenu />

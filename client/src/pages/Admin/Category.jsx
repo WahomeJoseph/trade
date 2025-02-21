@@ -6,7 +6,7 @@ import CategoryForm from "../../components/CategoryForm.jsx"
 import Modal from "../../components/Modal.jsx"
 import { AdminMenu } from "./AdminMenu.jsx"
 
-const Category = () => {
+export const Category = () => {
   const { data: categories } = useFetchCategoriesQuery()
   console.log(categories)
   const [name, setName] = useState("")
@@ -122,5 +122,3 @@ const Category = () => {
     </div>
   )
 }
-
-export default Category

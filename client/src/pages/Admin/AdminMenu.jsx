@@ -1,10 +1,3 @@
-// import React from 'react'
-
-// export const AdminMenu = () => {
-//   return (
-//     <div className='bg-gradient-to-tl from-slate-800 via-violet-500 to-zinc-400 bg-clip-text text-transparent text-[2rem] text-center tracking-wide uppercase font-bold bg-transparent mt-5 sm:w-full p-1'>Admin Panel</div>
-//   )
-// }
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { MdOutlineClose } from "react-icons/md";
@@ -21,7 +14,7 @@ export const AdminMenu = () => {
   return (
     <>
       <button
-        className={`${isMenuOpen ? 'top-7 right-2' : 'top-5 right-10'} bg-transparent fixed rounded-sm`}
+        className={`${isMenuOpen ? 'top-7 right-2' : 'top-5 right-10'} z-10 fixed bg-transparent border-blue-600 fixed rounded-sm`}
         onClick={toggleMenu}>
         {isMenuOpen ? (
           <MdOutlineClose className='text-gray-100 font-bold' size={20} />

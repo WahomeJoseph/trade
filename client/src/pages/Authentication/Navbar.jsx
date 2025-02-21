@@ -50,7 +50,7 @@ export const Navigation = () => {
   }
   
   return (
-    <div id="nav-container" style={{ zIndex: 999 }} className={`${showSidebar ? "visible" : "flex-col"} xl:flex lg:flex visible flex-col px-2 py-8 justify-between text-gray-100 bg-black hover:w-[20%] h-[100vh] fixed`}>
+    <div id="nav-container" style={{ zIndex: 999 }} className={`${showSidebar ? "visible" : "flex-col"} xl:flex lg:flex visible flex-col px-2 py-8 justify-between text-gray-100 bg-black hover:w-[10%] h-[100vh] fixed`}>
       <div className="flex flex-col justify-center sm:w-full sm:max-w-[12rem] space-y-2">
         <Link
           to="/"
