@@ -35,7 +35,7 @@ export const Dashboard = () => {
                 colors: '#fff',
             },
             grid: {
-                borderColor: '#088',
+                borderColor: '#060',
             },
             markers: {
                 size: 1,
@@ -87,12 +87,12 @@ export const Dashboard = () => {
 
     return (
         <>
-            <AdminMenu />
             <section className='relative min-h-screen bg-transparent items-center justify-center sm:mx-auto py-10 sm:px-20 md:px-[12rem]'>
                 <div className='absolute inset-0 bg-black bg-opacity-50'></div>
                 <div className='relative md:w-full grid grid-cols-3 gap-12 sm:gap-5 xsm:flex xsm:flex-cols-1 md:mx-[2rem] shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] p-10'>
+                <AdminMenu />
                     <article className='rounded-lg bg-gray-900 text-gray-100 p-5 w-full mt-5'>
-                        <div className='flex justify-center font-bold rounded-full bg-pink-500 text-center p-3'>
+                        <div className='flex justify-center font-bold rounded-full bg-[#060] text-center p-3'>
                             <FaDollarSign size={32} />
                         </div>
                         <p className='mt-5'>Sales</p>
@@ -101,7 +101,7 @@ export const Dashboard = () => {
                         </h1>
                     </article>
                     <article className='rounded-lg bg-gray-900 text-gray-100 p-5 w-full mt-5'>
-                        <div className='flex justify-center font-bold rounded-full bg-pink-500 text-center p-3'>
+                        <div className='flex justify-center font-bold rounded-full bg-[#060] text-center p-3'>
                             <FaDollarSign size={32} />
                         </div>
                         <p className='mt-5'>Customers</p>
@@ -110,7 +110,7 @@ export const Dashboard = () => {
                         </h1>
                     </article>
                     <article className='rounded-lg bg-gray-900 text-gray-100 p-5 w-full mt-5'>
-                        <div className='flex justify-center font-bold rounded-full bg-pink-500 text-center p-3'>
+                        <div className='flex justify-center font-bold rounded-full bg-[#060] text-center p-3'>
                             <FaDollarSign size={32} />
                         </div>
                         <p className='mt-5'>All Orders</p>

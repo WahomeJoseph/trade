@@ -6,21 +6,21 @@ const CategoryForm = ({ value, setValue, handleSubmit, handleDelete }) => {
       <form onSubmit={handleSubmit} className="bg-transparent space-y-4 mt-0">
         <input
           type="text"
-          className="py-4 px-4 border bg-gray-900 text-gray-100 rounded-sm w-full focus:outline-none"
+          className="py-4 px-4 border bg-[#101011] border-gray-900 text-gray-100 rounded-sm w-full focus:outline-none"
           placeholder="Enter category name.."
           value={value}
           onChange={(e) => setValue(e.target.value)} />
 
-        <div className="flex p-2 justify-between">
+        <div className="flex p-2 justify-between mx-20">
           <button
             onClick={handleSubmit}
-            className="bg-black border shadow-sm text-white font-bold py-2 px-4 rounded-md hover:bg-[#7231ff] hover:text-white">
+            className="bg-gray-900 border-b border-[#080] text-gray-100 font-semi-bold text-xl py-2 px-4 rounded-sm m-3 sm:truncate  hover:bg-[#060] hover:border-gray-100 focus:outline-none">
             Submit
           </button>
 
           <button
             onClick={handleDelete}
-            className="bg-[#d21404] border shadow-sm text-white font-bold py-2 px-4 rounded-md hover:bg-[#7231ff] hover:text-white">
+            className="bg-gray-900 border-b border-[#080] text-gray-100 font-semi-bold text-xl py-2 px-5 rounded-sm m-3 sm:truncate  hover:bg-[#800] hover:border-gray-100 focus:outline-none">
             Delete
           </button>
         </div>

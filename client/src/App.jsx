@@ -15,6 +15,8 @@ import { Product } from './pages/Admin/Product.jsx'
 import { ProductUpdate } from './pages/Admin/ProductUpdate.jsx'
 import { Dashboard } from './pages/Admin/Dashboard.jsx'
 import { Users } from './pages/Admin/Users.jsx'
+import { Hero } from './pages/hero/Hero.jsx'
+import { ProductList } from './pages/Admin/ProductList.jsx'
 
 const App = () => {
   return (
@@ -26,14 +28,17 @@ const App = () => {
         <Route path='/' element={<ProtectedRoute />}>
           <Route path='profile' element={<Profile />} />
         </Route>
+
         {/* authentication routes */}
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/' element={<Hero />} />
 
         {/* admin routes */}
         <Route path='/admin' element={<AdminRoute />}>
           <Route path='category' element={<Category />} />
           <Route path='products' element={<Product />} />
+          <Route path='productlist' element={<ProductList />} />
           <Route path='users' element={<Users />} />
           <Route path='update' element={<ProductUpdate />} />
           <Route path='dashboard' element={<Dashboard />} />

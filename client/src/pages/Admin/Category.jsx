@@ -81,15 +81,16 @@ export const Category = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Category deletion failed. Try again!")
+      toast.error("Failed to Delete Category!")
     }
   }
-
+  // md:ml-[16rem] md:mr-[12rem] sm:ml-10 bg-cover items-center h-screen
   return (
-    <div className="p-4 md:ml-[16rem] md:mr-[12rem] sm:ml-10 bg-cover items-center h-screen">
+    <div className="relative flex min-h-screen bg-transparent items-center justify-center p-4 sm:mx-auto py-10 sm:px-20 md:px-[20rem]">
+      <div className='absolute inset-0 bg-black bg-opacity-50'></div>
       <AdminMenu />
-      <div className="flex flex-col bg-cover bg-black rounded-sm shadow-xl w-full sm:mx-auto p-4 space-y-3">
-        <h2 className="text-2xl font-semi-bold md:text-left p-2 md:ml-2 sm:text-center text-gray-100">Manage Categories</h2>
+      <div className="relative flex flex-col bg-cover rounded-sm shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] w-full sm:mx-auto p-4 space-y-3">
+        <h2 className="text-2xl font-semi-bold md:text-left p-2 md:ml-2 sm:text-center text-gray-100">Manage ¥ Categories</h2>
 
         <CategoryForm
           value={name}
@@ -97,11 +98,11 @@ export const Category = () => {
           handleSubmit={handleCategory}
         />
 
-        <div className="flex gap-2 border-t-2 rounded-t border-gray-900 p-4 max-h-[12rem] overflow-y-auto">
+        <div className="flex gap-2 border-t-2 rounded-t border-[#080] p-4 max-h-[12rem] overflow-y-auto">
           {categories?.map((category) => (
             <div key={category._id}>
               <button
-                className="bg-gray-100 border font-semi-bold text-xl py-2 px-4 shadow-md rounded-md m-3 sm:truncate  hover:bg-gray-900 hover:text-white focus:outline-none"
+                className="bg-gray-900 border-b border-[#080] text-gray-100 font-semi-bold text-xl py-2 px-5 rounded-sm m-3 sm:truncate  hover:bg-[#080] hover:border-gray-100 focus:outline-none"
                 onClick={() => { { setModalVisible(true), setSelectedCategory(category), setUpdatingName(category.name) } }}>
                 {category.name}
               </button>

@@ -39,7 +39,7 @@ export const AdminMenu = () => {
             <li>
               <NavLink
                 className='py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
-                to='/admin/categorylist'
+                to='/admin/category'
                 style={({ isActive }) => ({
                   color: isActive ? 'greenyellow' : 'white',
                 })}>
@@ -49,7 +49,7 @@ export const AdminMenu = () => {
             <li>
               <NavLink
                 className=' py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
-                to='/admin/productlist'
+                to='/admin/products'
                 style={({ isActive }) => ({
                   color: isActive ? 'greenyellow' : 'white',
                 })}>
@@ -59,7 +59,7 @@ export const AdminMenu = () => {
             <li>
               <NavLink
                 className='py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
-                to='/admin/allproductslist'
+                to='/admin/productlist'
                 style={({ isActive }) => ({
                   color: isActive ? 'greenyellow' : 'white',
                 })}>
@@ -69,7 +69,7 @@ export const AdminMenu = () => {
             <li>
               <NavLink
                 className=' py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
-                to='/admin/userlist'
+                to='/admin/users'
                 style={({ isActive }) => ({
                   color: isActive ? 'greenyellow' : 'white',
                 })}>
@@ -79,7 +79,7 @@ export const AdminMenu = () => {
             <li>
               <NavLink
                 className=' py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
-                to='/admin/orderlist'
+                to='/admin/orders'
                 style={({ isActive }) => ({
                   color: isActive ? 'greenyellow' : 'white',
                 })}>

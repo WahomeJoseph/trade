@@ -6,7 +6,7 @@ import { authUsers, authAdmin } from '../middlewares/AuthUsers.js'
 export const userRouter = express.Router()
 
 userRouter.post('/register', createUser)
-      .get(authUsers, authAdmin, getAllUsers)
+userRouter.get('/', authAdmin, getAllUsers)
 
 userRouter.post('/login', loginUser)
 userRouter.post('/logout', logOutUser)
