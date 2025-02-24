@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const CategoryForm = ({ value, setValue, handleSubmit, handleDelete }) => {
+export const CategoryForm = ({ value, setValue, handleSubmit, handleDelete }) => {
   return (
     <div className="p-4 rounded-sm space-y-3 mt-1 mb-12">
       <form onSubmit={handleSubmit} className="bg-transparent space-y-4 mt-0">
@@ -42,5 +42,3 @@ CategoryForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func,
 };
-
-export default CategoryForm

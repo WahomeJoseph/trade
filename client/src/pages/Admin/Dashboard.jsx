@@ -90,7 +90,7 @@ export const Dashboard = () => {
             <section className='relative min-h-screen bg-transparent items-center justify-center sm:mx-auto py-10 sm:px-20 md:px-[12rem]'>
                 <div className='absolute inset-0 bg-black bg-opacity-50'></div>
                 <div className='relative md:w-full grid grid-cols-3 gap-12 sm:gap-5 xsm:flex xsm:flex-cols-1 md:mx-[2rem] shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] p-10'>
-                <AdminMenu />
+                    <AdminMenu />
                     <article className='rounded-lg bg-gray-900 text-gray-100 p-5 w-full mt-5'>
                         <div className='flex justify-center font-bold rounded-full bg-[#060] text-center p-3'>
                             <FaDollarSign size={32} />
@@ -106,7 +106,7 @@ export const Dashboard = () => {
                         </div>
                         <p className='mt-5'>Customers</p>
                         <h1 className='text-xl font-bold'>
-                            $ {isLoading ? <Loader /> : customers?.length}
+                            {isLoading ? <Loader /> : customers?.length}
                         </h1>
                     </article>
                     <article className='rounded-lg bg-gray-900 text-gray-100 p-5 w-full mt-5'>
@@ -115,7 +115,7 @@ export const Dashboard = () => {
                         </div>
                         <p className='mt-5'>All Orders</p>
                         <h1 className='text-xl font-bold'>
-                            $ {isLoading ? <Loader /> : orders?.totalOrders}
+                             {isLoading ? <Loader /> : orders?.totalOrders}
                         </h1>
                     </article>
                 </div>

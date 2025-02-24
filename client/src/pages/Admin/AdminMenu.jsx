@@ -31,7 +31,7 @@ export const AdminMenu = () => {
                 className='py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
                 to='/admin/dashboard'
                 style={({ isActive }) => ({
-                  color: isActive ? 'greenyellow' : 'white',
+                  color: isActive ? 'green' : 'white',
                 })}>
                 Admin Dashboard
               </NavLink>
@@ -41,7 +41,7 @@ export const AdminMenu = () => {
                 className='py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
                 to='/admin/category'
                 style={({ isActive }) => ({
-                  color: isActive ? 'greenyellow' : 'white',
+                  color: isActive ? 'green' : 'white',
                 })}>
                 Create Category
               </NavLink>
@@ -51,7 +51,7 @@ export const AdminMenu = () => {
                 className=' py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
                 to='/admin/products'
                 style={({ isActive }) => ({
-                  color: isActive ? 'greenyellow' : 'white',
+                  color: isActive ? 'green' : 'white',
                 })}>
                 Create Product
               </NavLink>
@@ -61,7 +61,7 @@ export const AdminMenu = () => {
                 className='py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
                 to='/admin/productlist'
                 style={({ isActive }) => ({
-                  color: isActive ? 'greenyellow' : 'white',
+                  color: isActive ? 'green' : 'white',
                 })}>
                 All Products
               </NavLink>
@@ -71,7 +71,7 @@ export const AdminMenu = () => {
                 className=' py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
                 to='/admin/users'
                 style={({ isActive }) => ({
-                  color: isActive ? 'greenyellow' : 'white',
+                  color: isActive ? 'green' : 'white',
                 })}>
                 Manage Users
               </NavLink>
@@ -81,7 +81,7 @@ export const AdminMenu = () => {
                 className=' py-2 px-3 block mb-4 hover:bg-gray-800 rounded-sm'
                 to='/admin/orders'
                 style={({ isActive }) => ({
-                  color: isActive ? 'greenyellow' : 'white',
+                  color: isActive ? 'green' : 'white',
                 })}>
                 Manage Orders
               </NavLink>

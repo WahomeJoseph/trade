@@ -2,7 +2,7 @@
 import React from "react"
 import PropTypes from 'prop-types'
 import { MdOutlineCloseFullscreen } from "react-icons/md";
-const Modal = ({isOpen, onClose, children}) => {
+export const Modal = ({isOpen, onClose, children}) => {
   return (
     <>
       {isOpen && (
@@ -27,5 +27,3 @@ Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node
 }
-
-export default Modal;
