@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { useAllProductsQuery } from '../../redux/api/ProductApi'
 import { AdminMenu } from './AdminMenu'
+import { Loader } from '../../components/Loader'
 
-export const ProductList = () => {
+export const Products = () => {
     const { data: products, isLoading, isError } = useAllProductsQuery()
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return  <Loader/> //<div>Loading...</div>
     }
 
     if (isError) {

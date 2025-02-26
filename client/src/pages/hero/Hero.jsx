@@ -1,24 +1,20 @@
 import { Link, useParams } from 'react-router-dom'
-import {useGetProductsQuery} from '../../redux/api/ProductApi.js'
+import { useGetProductsQuery } from '../../redux/api/ProductApi.js'
 import { Loader } from '../../components/Loader'
 import { Message } from '../../components/Message'
-import { Product } from '../Admin/Product'
+import { AddProduct } from '../Admin/AddProduct'
 import { Header } from '../../components/Header'
 
 export const Hero = () => {
   const { keyword } = useParams()
-  const { data, isLoading, isError } = useGetProductsQuery({ keyword })
+  const { data, isLoading, isError, error } = useGetProductsQuery({ keyword })
 
   return (
     <>
       {!keyword ? <Header /> : null}
-      {isLoading ? (
-        <Loader />
-      ) : isError ? (
-        <Message variant='danger'>
-          {isError?.data.message || isError.error}
-        </Message>
-      ) : (
+      {isLoading ? (<Loader />) : isError ? (<Message variant='danger'>
+        {error?.data.message || error.message || 'An error occurred'}
+      </Message>) : (
         <>
           <div className='flex justify-between items-center'>
             <h1 className='ml-[20rem] mt-[10rem] text-[3rem]'>
@@ -37,13 +33,22 @@ export const Hero = () => {
             <div className='flex justify-center flex-wrap mt-[2rem]'>
               {data.products.map((product) => (
                 <div key={product._id}>
-                  <Product product={product} />
+                  <AddProduct product={product} />
                 </div>
               ))}
             </div>
           </div>
         </>
       )}
-    </>
-  )
+        {/* {isLoading ? (
+        <Loader />
+      ) : isError ? (
+        <Message variant='danger'>
+          {isError?.data.message || isError.error}
+        </Message>
+      ) : (
+        
+      )} */}
+      </>
+      )
 }

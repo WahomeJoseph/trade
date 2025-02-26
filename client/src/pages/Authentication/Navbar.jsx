@@ -97,7 +97,7 @@ export const Navigation = () => {
               <>
                 <li><Link to='/admin/dashboard' className="block px-3 py-2 hover:bg-gray-800">Dashboard</Link></li>
                 <li><Link to='/admin/orders' className="block px-3 py-2 hover:bg-gray-800">Orders</Link></li>
-                <li><Link to='/admin/products' className="block px-3 py-2 hover:bg-gray-800">Products</Link></li>
+                <li><Link to='/admin/addproduct' className="block px-3 py-2 hover:bg-gray-800">+ Product</Link></li>
                 <li><Link to='/admin/category' className="block px-3 py-2 hover:bg-gray-800">Category</Link></li>
                 <li><Link to='/admin/users' className="block px-3 py-2 hover:bg-gray-800">Users</Link></li>
               </>

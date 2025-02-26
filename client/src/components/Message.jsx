@@ -10,10 +10,11 @@ export const Message = ({ variant, children }) => {
             case 'error':
                 return 'bg-red-100 text-red-500'
             default:
+                return ''
         }
     }
     return (
-        <div className='{`p-4 rounded-sm ${getVariantClass}}'>{children}</div>
+        <div className={`p-4 rounded-sm ${getVariant()}`}>{children}</div>
     )
 }
 

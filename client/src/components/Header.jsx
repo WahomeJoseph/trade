@@ -13,13 +13,17 @@ export const Header = () => {
   if (error) {
     return <h1>ERROR</h1>
   }
+  console.log("API Response:", data); // Debugging log
+
+  // Ensure data is in the correct format
+  const products = Array.isArray(data) ? data : data?.products || [];
 
   return (
     <>
       <div className='flex justify-around'>
         <div className='xl:block lg:hidden md:hidden:sm:hidden'>
           <div className='grid grid-cols-2'>
-            {data.map((product) => (
+            {products.map((product) => (
               <div key={product._id}>
                 {/* <SmallProduct product={product} /> */}
               </div>

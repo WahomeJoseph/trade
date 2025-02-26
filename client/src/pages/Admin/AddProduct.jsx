@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import { AdminMenu } from './AdminMenu'
 // import { AdminMenu } from './AdminMenu'
 
-export const Product = () => {
+export const AddProduct = () => {
     // const [image, setImage] = useState('')
     // const [imageUrl, setImageUrl] = useState(null)
     const [name, setName] = useState('')
