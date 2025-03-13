@@ -8,7 +8,6 @@ import { toast } from 'react-hot-toast'
 import { setCredentials } from '../../redux/features/auth/AuthSlice'
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 
-
 export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
