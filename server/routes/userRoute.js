@@ -1,6 +1,6 @@
 
 import express from 'express'
-import { createUser, loginUser, logOutUser, getCurrentUserProfile, getAllUsers, getUser, deleteUser, updateUser, updateCurrentUserProfile } from '../controllers/userController.js'
+import { createUser, loginUser, limiter, logOutUser, getCurrentUserProfile, getAllUsers, getUser, deleteUser, updateUser, updateCurrentUserProfile } from '../controllers/userController.js'
 import { authUsers, authAdmin } from '../middlewares/AuthUsers.js'
 
 export const userRouter = express.Router()
@@ -8,7 +8,7 @@ export const userRouter = express.Router()
 userRouter.post('/register', createUser)
 userRouter.get('/', authAdmin, getAllUsers)
 
-userRouter.post('/login', loginUser)
+userRouter.post('/login', loginUser, limiter)
 userRouter.post('/logout', logOutUser)
 
 // get and update user profile

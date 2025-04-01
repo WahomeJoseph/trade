@@ -59,7 +59,7 @@ export const Register = () => {
             <div className='absolute inset-0 bg-black bg-opacity-50'></div>
             <section className='relative md:mx-[10rem] sm:my-20 p-5 bg-transparent shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] bg-opacity-80 rounded-sm md:w-full lg:max-w-xl xl:max-w-2xl'>
                 <span className='block text-white text-center text-2xl font-semi-bold'>
-                    Welcome To <strong className='text-[#7231ff]'>Walevi Liquor Store 🍻 🍾</strong>.
+                    Welcome To <strong className='text-[#7231ff]'>Core Tech Store</strong>.
                 </span>
                 <h2 className='text-2xl text-white text-center font-bold p-2'>Create New Account</h2>
                 <form onSubmit={handleRegister} className='space-y-4 p-3'>

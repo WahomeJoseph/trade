@@ -1,31 +1,36 @@
-import jwt from 'jsonwebtoken'
-import User from '../models/userModel.js'
+import jwt from 'jsonwebtoken';
+import User from '../models/userModel.js';
 
-export const authUsers = async (req,res,next) => {
-  let token
-
+export const authUsers = async (req, res, next) => {
+  let token;
   // Read JWT from jwt cookies
-  token = req.cookies.jwt
+  token = req.cookies?.jwt;
 
- if (token) {
-   try {
-     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-     req.user = await User.findById(decoded.userId).select('-password')
-     next() //proceed to the next request
-   } catch (error) {
-     res.status(401).json({message: 'Authentication Required! No tokens found!'})
-   }
- } else {
-   res.status(401).json({message: 'Authentication Required!'})
- }
-}
-
-// check if user is an admin
-export const authAdmin = (req, res, next) => {
-
-  if (req.user && req.user.isAdmin) {
-    next() //proceed to execute 
-  } else {
-    res.status(401).json({message: 'Only Admins are Authorized!'})
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Authentication Required! No tokens found!' });
   }
-}
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found!' });
+    }
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error('Error in authUsers middleware:', error);
+    return res.status(401).json({ success: false, message: 'Invalid or expired token!' });
+  }
+};
+
+// Check if user is an admin
+export const authAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    return res.status(403).json({ success: false, message: 'Ooops! Only Admins are Authorized!' });
+  }
+};

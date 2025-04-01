@@ -1,8 +1,9 @@
 import bcrypt from "bcryptjs";
 import { genToken } from '../utils/createToken.js'
 import Users from "../models/userModel.js";
+import { rateLimit } from 'express-rate-limit'
 
-// function create a new user account
+// create a new user account
 export const createUser = async (req, res) => {
   const { username, email, password, isAdmin } = req.body;
 
@@ -10,27 +11,25 @@ export const createUser = async (req, res) => {
     res.status(400).json({ message: 'All inputs are required!' })
     return
   }
-  // email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     res.status(400).json({ message: 'Invalid email format!' });
     return
   }
-  // password validation
   if (password.length < 8) {
     res.status(400).json({ message: 'Password must be at least 8 characters long!' });
     return
   }
 
   // check if user exist
-  const userExists = await Users.findOne({ email })
+  const userExists = await Users.findOne({ email: String(email) })
   if (userExists) {
     res.status(400).json({ message: "User already exist!" });
     return
   }
 
   // password hashing
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(20);
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // add new user
@@ -46,28 +45,38 @@ export const createUser = async (req, res) => {
       isAdmin: newUser.isAdmin,
     });
   } catch (error) {
+    console.error(error)
     res.status(500).json({ message: 'Failed to create new user' });
     return
   }
 }
 
-// fxn for users to login 
+// users to login 
+export const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 3,
+  legacyHeaders: false,
+  standardHeaders: 'draft-8'
+});
+
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({message: 'Email and password are required!'})
+    }
 
-    const existingUser = await Users.findOne({ email });
+    const existingUser = await Users.findOne({ email : String(email) });
     if (!existingUser) {
-      res.status(400).json({message: 'User Not Found!'})
+      res.status(400).json({message: 'Invalid email!'})
       return 
     }
 
     const isPasswordValid = await bcrypt.compare(password,existingUser.password);
     if (!isPasswordValid) {
-      res.status(401).json({message: 'Invalid Email or Password!'})
+      res.status(401).json({message: 'Invalid password!'})
       return 
     }
-
       genToken(res, existingUser._id);
       return res.status(200).json({
         message: 'Login Successful!',
@@ -77,7 +86,8 @@ export const loginUser = async (req, res) => {
         isAdmin: existingUser.isAdmin,
       });
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!' }, error.message)
+    console.error(error)
+    res.status(500).json({ message: 'Internal Server Error!' })
   }
 }
 
@@ -122,7 +132,7 @@ export const updateCurrentUserProfile = async (req, res) => {
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
-      const salt = await bcrypt.genSalt(10);
+      const salt = await bcrypt.genSalt(20);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
       user.password = hashedPassword;
     }
@@ -151,7 +161,7 @@ export const deleteUser = async (req, res) => {
       throw new Error("Cannot delete admin user");
     }
 
-    await User.deleteOne({ _id: user._id });
+    await user.deleteOne({ _id: user._id });
     res.json({ message: "User removed" });
   } else {
     res.status(404);

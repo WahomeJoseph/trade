@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from '../../redux/features/cart/CartApi';
 import { toast } from "react-hot-toast";
 import { CiHeart } from "react-icons/ci";
+import PropTypes from 'prop-types';
 
 export const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,9 @@ export const ProductCard = ({ p }) => {
     toast.success("Item added successfully", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 2000,
-    });
+  });
+  
+ 
   };
 
   return (
@@ -82,4 +85,15 @@ export const ProductCard = ({ p }) => {
       </div>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  p: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    brand: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+  }).isRequired,
 };

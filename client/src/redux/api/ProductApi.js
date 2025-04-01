@@ -17,7 +17,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
     getProductById: builder.query({
       query: (productId) => `${PRODUCT_URL}/${productId}`,
       providesTags: (result, error, productId) => [
-        { type: "Product", id: productId }, 
+        { type: "Products", id: productId }, 
       ],
     }),
 
@@ -41,7 +41,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: productData,
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["Products"],
     }),
 
     // update a product
@@ -68,7 +68,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         url: `${PRODUCT_URL}/${productId}`,
         method: "DELETE",
       }),
-      providesTags: ["Product"],
+      providesTags: ["Products"],
     }),
 
     // add review and rating on products

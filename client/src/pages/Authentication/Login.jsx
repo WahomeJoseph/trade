@@ -49,7 +49,7 @@ export const Login = () => {
             <div className='absolute inset-0 bg-black bg-opacity-50'></div>
             <section className='relative md:mx-[10rem] p-5 bg-transparent shadow-[0px_0px_20px_0px_rgba(165,_39,_255,_0.48)] bg-opacity-80 rounded-sm sm:mx-10 md:w-full lg:max-w-xl xl:max-w-2xl'>
                 <span className='block text-white text-center text-2xl font-semi-bold'>
-                    Welcome Back to <strong className='text-[#7231ff] not-italic'>Walevi Liquor Store 🍻 🍾</strong>.
+                    Welcome Back to <strong className='text-[#7231ff] not-italic'>Core Tech Store</strong>.
                 </span>
                 <h2 className='text-2xl text-white text-center font-bold p-2'>Log In</h2>
                 <form onSubmit={handleLogin} className='space-y-4 p-3'>
