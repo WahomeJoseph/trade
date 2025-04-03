@@ -54,7 +54,7 @@ export const createUser = async (req, res) => {
 // users to login 
 export const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 3,
+  max: 10,
   legacyHeaders: false,
   standardHeaders: 'draft-8'
 });

@@ -24,7 +24,7 @@ export const addProduct = async (req, res) => {
     res.status(200).json({ message: 'Product Added Succesfully', product })
 
   } catch (error) {
-    res.status(401).json({ message: 'Failed to Add Product', error: error.message })
+    res.status(401).json({ message: 'Failed to Add Product'})
   }
 }
 
@@ -52,7 +52,7 @@ export const updateProduct = async (req, res) => {
     res.status(200).json({ message: 'Product Updated Successfully!', product })
 
   } catch (error) {
-    res.status(400).json({ message: 'Failed to Update Product!', error: error.message })
+    res.status(400).json({ message: 'Failed to Update Product!'})
   }
 }
 
@@ -62,7 +62,7 @@ export const removeProduct = async (req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id)
     res.status(200).json({ message: 'Product Deleted Successfully!', product })
   } catch (error) {
-    res.status(500).json({ message: 'Failed to Delete Product!', error: error.message })
+    res.status(500).json({ message: 'Failed to Delete Product!'})
   }
 }
 
@@ -89,7 +89,7 @@ export const fetchProducts = async (req, res) => {
       hasMore: false,
     })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error'})
   }
 }
 
@@ -103,7 +103,7 @@ export const fetchProductById = async (req, res) => {
       res.status(404).json({ message: 'No Product Found!' })
     }
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -116,7 +116,7 @@ export const fetchAllProducts = async (req, res) => {
       .sort({ createAt: -1 })
     res.status(200).json({ message: 'Products Loaded Successfully!', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -151,7 +151,7 @@ export const addProductReview = async (req, res) => {
       res.status(400).json({ message: 'Product Review not Added!' })
     }
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error'})
   }
 }
 
@@ -166,7 +166,7 @@ export const fetchTopProducts = async (req, res) => {
 
     res.status(200).json({ message: 'Top Product Sales!', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -176,7 +176,7 @@ export const fetchNewProducts = async (req, res) => {
     const products = await Product.find().sort({ _id: -1 }).limit(5)
     res.status(200).json({ message: 'Newest Products!', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -192,6 +192,6 @@ export const filterProducts = async (req, res) => {
     const products = await Product.find(args)
     res.status(200).json({ message: 'Filtered Products', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!', error: error.message })
+    res.status(500).json({ message: 'Internal Server Error!'})
   }
 }

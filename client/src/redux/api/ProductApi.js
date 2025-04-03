@@ -24,6 +24,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
     // fetch all products
     allProducts: builder.query({
       query: () => `${PRODUCT_URL}/all-products`,
+       credentials: 'include'
     }),
 
     // fetch a product details

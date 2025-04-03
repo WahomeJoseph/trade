@@ -8,12 +8,11 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
-import { logout } from "../../redux/features/auth/AuthSlice.js";
+import { logout } from "../../redux/features/auth/authSlice.js";
 import { useLogoutMutation } from "../../redux/api/UsersApi.js";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Navigation = () => {
-  // hooks for dropdown menu and sidebar
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 

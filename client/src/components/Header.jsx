@@ -11,7 +11,7 @@ export const Header = () => {
   }
 
   if (error) {
-    return <h1>ERROR</h1>
+    return <h1 className='text-[2rem] text-center text-red-600'>An error occurred!</h1>
   }
   console.log("API Response:", data); // Debugging log
 

@@ -19,7 +19,12 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(cors())
+app.use(cors(
+    {
+        origin: 'http://localhost:5174',
+        credentials: true
+    }
+))
 
 app.use('/users', userRouter)
 app.use('/products', productRouter)
@@ -28,7 +33,7 @@ app.use('/orders', orderRouter)
 app.use('/uploads', uploadRouter)
 
 const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join( __dirname, 'server', 'uploads')))
+app.use('/uploads', express.static(path.join(__dirname, 'server', 'uploads')))
 
 app.get('/', (req, res) => {
     res.send('Welcome To Our Store')

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/UsersApi'
 import { Loader } from '../../components/Loader'
 import { toast } from 'react-hot-toast'
-import { setCredentials } from '../../redux/features/auth/AuthSlice'
+import { setCredentials } from '../../redux/features/auth/authSlice'
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 export const Login = () => {
@@ -15,7 +15,6 @@ export const Login = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const [login, { isLoading }] = useLoginMutation()
     const { userInfo } = useSelector((state) => state.auth)
 

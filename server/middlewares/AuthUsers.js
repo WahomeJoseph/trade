@@ -4,7 +4,7 @@ import User from '../models/userModel.js';
 export const authUsers = async (req, res, next) => {
   let token;
   // Read JWT from jwt cookies
-  token = req.cookies?.jwt;
+  token = req.cookies?.jwt
 
   if (!token) {
     return res.status(401).json({ success: false, message: 'Authentication Required! No tokens found!' });
@@ -17,12 +17,12 @@ export const authUsers = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found!' });
     }
-
     req.user = user;
     next();
+
   } catch (error) {
-    console.error('Error in authUsers middleware:', error);
-    return res.status(401).json({ success: false, message: 'Invalid or expired token!' });
+    console.error('Middleware error', error);
+    return res.status(401).json({ success: false, message: 'Invalid or expired tokens!' });
   }
 };
 
