@@ -34,17 +34,17 @@ export const updateProduct = async (req, res) => {
     const { name, description, price, category, quantity, brand } = req.body
     switch (true) {
       case !name:
-        return res.json({ error: "Name is required" })
+        return res.json({ error: "Name is required!" })
       case !brand:
-        return res.json({ error: "Brand is required" })
+        return res.json({ error: "Brand is required!" })
       case !description:
-        return res.json({ error: "Description is required" })
+        return res.json({ error: "Description is required!" })
       case !price:
-        return res.json({ error: "Price is required" })
+        return res.json({ error: "Price is required!" })
       case !category:
-        return res.json({ error: "Category is required" })
+        return res.json({ error: "Category is required!" })
       case !quantity:
-        return res.json({ error: "Quantity is required" })
+        return res.json({ error: "Quantity is required!" })
     }
 
     const product = await Product.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true })
@@ -69,7 +69,7 @@ export const removeProduct = async (req, res) => {
 // fetch only the indicated amout of products
 export const fetchProducts = async (req, res) => {
   try {
-    const pageSize = 3
+    const pageSize = 5
     const keyword = req.query.keyword
       ? {
         name: {
@@ -84,7 +84,7 @@ export const fetchProducts = async (req, res) => {
 
     res.json({
       products,
-      page: 1,
+      page: 2,
       pages: Math.ceil(count / pageSize),
       hasMore: false,
     })
@@ -112,7 +112,7 @@ export const fetchAllProducts = async (req, res) => {
   try {
     const products = await Product.find({})
       .populate("category")
-      .limit(12)
+      .limit(20)
       .sort({ createAt: -1 })
     res.status(200).json({ message: 'Products Loaded Successfully!', products })
   } catch (error) {
@@ -158,7 +158,7 @@ export const addProductReview = async (req, res) => {
 // filter by getting top products based on the rating and reviews
 export const fetchTopProducts = async (req, res) => {
   try {
-    const products = await Product.find({}).sort({ rating: -1, reviews: -1 }).limit(3)
+    const products = await Product.find({}).sort({ rating: -1, reviews: -1 }).limit(10)
 
     if (!products || products.length === 0) {
       res.status(404).json({ message: 'No Top-rated Products Found!' })

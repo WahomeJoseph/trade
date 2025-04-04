@@ -32,7 +32,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: (productId) => ({
         url: `${PRODUCT_URL}/${productId}`,
       }),
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 10,
     }),
 
     // add a new product
@@ -84,13 +84,13 @@ export const productApiSlice = apiSlice.injectEndpoints({
     // filter top rated products
     getTopProducts: builder.query({
       query: () => `${PRODUCT_URL}/top`,
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 10,
     }),
 
     // filter newest products
     getNewProducts: builder.query({
       query: () => `${PRODUCT_URL}/new`,
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 10,
     }),
 
     // filter
