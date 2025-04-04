@@ -3,28 +3,14 @@ import moment from 'moment';
 import { useAllProductsQuery } from '../../redux/api/ProductApi';
 import { AdminMenu } from './AdminMenu';
 import { Loader } from '../../components/Loader';
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../redux/features/auth/authSlice';
-import { useNavigate } from 'react-router-dom';
 
 export const Products = () => {
-    const navigate = useNavigate();
-    const user = useSelector(selectCurrentUser);
 
-    // Skip query if user is not admin
-    const {
-        data: products,
-        isLoading,
-        isError,
-        error
-    } = useAllProductsQuery(undefined, {
-        skip: !user?.isAdmin
+    const { data: products, isLoading, isError, error } = useAllProductsQuery(undefined, {
     });
 
-    // Redirect if not admin
-    if (!user?.isAdmin) {
-        navigate('/unauthorized');
-        return null;
+    if (isError) {
+        return <div>Error loading products</div>;
     }
 
     if (isLoading) {

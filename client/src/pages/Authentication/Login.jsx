@@ -34,12 +34,18 @@ export const Login = () => {
         try {
             const result = await login({ email, password }).unwrap()
             console.log('Login Successful!', result)
-            dispatch(setCredentials(result))
+
+            dispatch(setCredentials({
+                user: result.user,
+                token: result.token,
+                refreshToken: result.refreshToken
+            }))
+
             toast.success('Login successful')
             navigate(redirect)
         } catch (error) {
             console.log('Login Failed!', error)
-            toast.error('Invalid credentials', error?.data?.message)
+            toast.error(error?.data?.message || 'Invalid credentials')
         }
     }
 

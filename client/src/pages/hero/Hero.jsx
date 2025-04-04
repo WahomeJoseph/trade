@@ -8,6 +8,7 @@ import { Header } from '../../components/Header'
 export const Hero = () => {
   const { keyword } = useParams()
   const { data, isLoading, isError, error } = useGetProductsQuery({ keyword })
+  const products = data?.products || []
 
   return (
     <>
@@ -31,7 +32,7 @@ export const Hero = () => {
 
           <div>
             <div className='flex justify-center flex-wrap mt-[2rem]'>
-              {data.products.map((product) => (
+              {products.map((product) => (
                 <div key={product._id}>
                   <AddProduct product={product} />
                 </div>

@@ -1,49 +1,45 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-const validateUserInfo = (userInfo) => {
-  try {
-    const parsed = JSON.parse(userInfo);
-    return parsed?.token && parsed?.role ? parsed : null;
-  } catch {
-    return null;
-  }
-};
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  userInfo: validateUserInfo(localStorage.getItem('userInfo')),
-  token: localStorage.getItem('token') || null,
-  isAuthenticated: !!localStorage.getItem('token'),
-};
+  userInfo: localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null,
+  token: localStorage.getItem("accessToken") || null,
+  refreshToken: localStorage.getItem("refreshToken") || null,
+}
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      const { userInfo, token } = action.payload;
-      state.userInfo = userInfo;
-      state.token = token;
-      state.isAuthenticated = true;
+      state.userInfo = action.payload.user
+      state.token = action.payload.token
 
-      localStorage.setItem('userInfo', JSON.stringify(userInfo));
-      localStorage.setItem('token', token);
+      localStorage.setItem("userInfo", JSON.stringify(action.payload))
+      localStorage.setItem("accessToken", action.payload.token)
+
+      const expirationTime = new Date().getTime() + 60 * 60 * 1000 //1hr
+      localStorage.setItem("expirationTime", expirationTime)
+
+      if (action.payload.refreshToken) {
+        state.refreshToken = action.payload.refreshToken;
+        localStorage.setItem("refreshToken", action.payload.refreshToken);
+      }
+
     },
     logout: (state) => {
-      state.userInfo = null;
-      state.token = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem('userInfo');
-      localStorage.removeItem('token');
-      localStorage.clear();
+      state.userInfo = null
+      state.token = null
+      state.refreshToken = null
+      localStorage.removeItem("userInfo")
+      localStorage.removeItem("accessToken")
+      localStorage.removeItem("refreshToken")
+      localStorage.removeItem("expirationTime")
     },
   },
-});
+})
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logout } = authSlice.actions
 
-export const selectCurrentToken = (state) => state.auth.token;
-export const selectCurrentUser = (state) => state.auth.userInfo;
-export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
-export const selectIsAdmin = (state) => state.auth.userInfo?.role === 'admin';
-
-export default authSlice.reducer;
+export default authSlice.reducer
