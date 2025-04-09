@@ -20,25 +20,25 @@ const productSchema = mongoose.Schema(
     name: {
       type: String, required: true
     },
-    image: {
-      type: String, required: false
-    },
     brand: {
       type: String, required: true
     },
     description: {
       type: String, required: true
     },
-    quantity: {
-      type: Number, required: true
+    price: {
+      type: Number, required: true, default: 0
     },
     category: {
       type: ObjectId, ref: "Category", required: true
     },
-    countInStock: {
-      type: Number, required: true, default: 0
+    quantity: {
+      type: Number, required: true
     },
-    price: {
+    image: {
+      type: String, required: false
+    },
+    countInStock: {
       type: Number, required: true, default: 0
     },
     reviews: [reviewSchema],

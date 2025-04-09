@@ -5,7 +5,7 @@ import { authUsers, authAdmin } from "../middlewares/AuthUsers.js"
 
 export const productRouter = express.Router()
 
-productRouter.post('/', authAdmin, addProduct)
+productRouter.post('/', authUsers, authAdmin, addProduct)
 productRouter.get('/', authUsers, fetchProducts)
 
 productRouter.get('/all-products', authUsers, authAdmin, fetchAllProducts)

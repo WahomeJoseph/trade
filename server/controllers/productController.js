@@ -3,7 +3,39 @@ import Product from "../models/productModel.js"
 // add a new product
 export const addProduct = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.body
+    const { name, brand, description, price, category, quantity, image, countInStock } = req.body
+    switch (true) {
+      case !name:
+        return res.json({ error: "Name is required!" })
+      case !brand:
+        return res.json({ error: "Brand is required" })
+      case !description:
+        return res.json({ error: "Description is required" })
+      case !price:
+        return res.json({ error: "Price is required" })
+      case !category:
+        return res.json({ error: "Category is required" })
+      case !quantity:
+        return res.json({ error: "Quantity is required" })
+      case !image:
+        return res.json({ error: "Image is required" })
+      case !countInStock:
+        return res.json({ error: "Count in Stock is required" })
+    }
+
+    const product = new Product({ ...req.body })
+    await product.save()
+    return res.status(200).json({ message: 'Product Added Succesfully', product })
+
+  } catch (error) {
+    return res.status(401).json({ message: 'Failed to Add Product'})
+  }
+}
+
+// update a product
+export const updateProduct = async (req, res) => {
+  try {
+    const { name, brand, description, price, category, quantity, image, countInStock } = req.body
     switch (true) {
       case !name:
         return res.json({ error: "Name is required" })
@@ -17,42 +49,18 @@ export const addProduct = async (req, res) => {
         return res.json({ error: "Category is required" })
       case !quantity:
         return res.json({ error: "Quantity is required" })
-    }
-
-    const product = new Product({ ...req.body })
-    await product.save()
-    res.status(200).json({ message: 'Product Added Succesfully', product })
-
-  } catch (error) {
-    res.status(401).json({ message: 'Failed to Add Product'})
-  }
-}
-
-// update a product
-export const updateProduct = async (req, res) => {
-  try {
-    const { name, description, price, category, quantity, brand } = req.body
-    switch (true) {
-      case !name:
-        return res.json({ error: "Name is required!" })
-      case !brand:
-        return res.json({ error: "Brand is required!" })
-      case !description:
-        return res.json({ error: "Description is required!" })
-      case !price:
-        return res.json({ error: "Price is required!" })
-      case !category:
-        return res.json({ error: "Category is required!" })
-      case !quantity:
-        return res.json({ error: "Quantity is required!" })
+      case !image:
+        return res.json({ error: "Image is required" })
+      case !countInStock:
+        return res.json({ error: "Count in Stock is required" })
     }
 
     const product = await Product.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true })
     await product.save()
-    res.status(200).json({ message: 'Product Updated Successfully!', product })
+    return res.status(200).json({ message: 'Product Updated Successfully!', product })
 
   } catch (error) {
-    res.status(400).json({ message: 'Failed to Update Product!'})
+    return res.status(400).json({ message: 'Failed to Update Product!'})
   }
 }
 
@@ -60,9 +68,9 @@ export const updateProduct = async (req, res) => {
 export const removeProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id)
-    res.status(200).json({ message: 'Product Deleted Successfully!', product })
+    return res.status(200).json({ message: 'Product Deleted Successfully!', product })
   } catch (error) {
-    res.status(500).json({ message: 'Failed to Delete Product!'})
+    return res.status(500).json({ message: 'Failed to Delete Product!'})
   }
 }
 
@@ -82,14 +90,14 @@ export const fetchProducts = async (req, res) => {
     const count = await Product.countDocuments({ ...keyword })
     const products = await Product.find({ ...keyword }).limit(pageSize)
 
-    res.json({
+    return res.json({
       products,
       page: 2,
       pages: Math.ceil(count / pageSize),
       hasMore: false,
     })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error'})
+    return res.status(500).json({ message: 'Internal Server Error'})
   }
 }
 
@@ -98,12 +106,12 @@ export const fetchProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
     if (product) {
-      res.status(200).json({ message: 'Product Fetched Successfully!', product })
+      return res.status(200).json({ message: 'Product Fetched Successfully!', product })
     } else {
-      res.status(404).json({ message: 'No Product Found!' })
+      return res.status(404).json({ message: 'No Product Found!' })
     }
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!'})
+    return res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -114,9 +122,9 @@ export const fetchAllProducts = async (req, res) => {
       .populate("category")
       .limit(20)
       .sort({ createAt: -1 })
-    res.status(200).json({ message: 'Products Loaded Successfully!', products })
+    return res.status(200).json({ message: 'Products Loaded Successfully!', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!'})
+    return res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -129,7 +137,7 @@ export const addProductReview = async (req, res) => {
     if (product) {
       const alreadyReviewed = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString())
       if (alreadyReviewed) {
-        res.status(40).json({ message: 'Product Already Reviewed!' })
+        return res.status(40).json({ message: 'Product Already Reviewed!' })
       }
 
       const review = {
@@ -146,27 +154,26 @@ export const addProductReview = async (req, res) => {
         product.reviews.length
 
       await product.save()
-      res.status(200).json({ message: 'Product Review Added!' })
+      return res.status(200).json({ message: 'Product Review Added!' })
     } else {
-      res.status(400).json({ message: 'Product Review not Added!' })
+      return res.status(400).json({ message: 'Product Review not Added!' })
     }
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error'})
+    return res.status(500).json({ message: 'Internal Server Error'})
   }
 }
 
 // filter by getting top products based on the rating and reviews
 export const fetchTopProducts = async (req, res) => {
   try {
-    const products = await Product.find({}).sort({ rating: -1, reviews: -1 }).limit(10)
+    const products = await Product.find({}).sort({ rating: -1, numReviews: -1 }).limit(10).exec()
 
     if (!products || products.length === 0) {
-      res.status(404).json({ message: 'No Top-rated Products Found!' })
+      return res.status(404).json({ message: 'No Top-rated Products Found!' })
     }
-
-    res.status(200).json({ message: 'Top Product Sales!', products })
+    return res.status(200).json({ message: 'Top Product Sales!', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!'})
+    return res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -174,9 +181,9 @@ export const fetchTopProducts = async (req, res) => {
 export const fetchNewProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ _id: -1 }).limit(5)
-    res.status(200).json({ message: 'Newest Products!', products })
+    return res.status(200).json({ message: 'Newest Products!', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!'})
+    return res.status(500).json({ message: 'Internal Server Error!'})
   }
 }
 
@@ -190,8 +197,8 @@ export const filterProducts = async (req, res) => {
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] }
 
     const products = await Product.find(args)
-    res.status(200).json({ message: 'Filtered Products', products })
+    return res.status(200).json({ message: 'Filtered Products', products })
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error!'})
+    return res.status(500).json({ message: 'Internal Server Error!'})
   }
 }

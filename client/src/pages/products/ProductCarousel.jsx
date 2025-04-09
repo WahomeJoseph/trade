@@ -26,7 +26,7 @@ const NextArrow = ({ onClick }) => (
 )
 
 PrevArrow.propTypes = NextArrow.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
 const ProductCarousel = () => {

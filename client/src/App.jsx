@@ -18,7 +18,7 @@ import { Hero } from './pages/hero/Hero.jsx'
 import { Products } from './pages/Admin/Products.jsx'
 import { AddProduct } from './pages/Admin/AddProduct.jsx'
 import { Cart } from './pages/cart/Cart.jsx'
-// import { Shop } from './pages/shop/Shop.jsx'
+import { Shop } from './pages/shop/Shop.jsx'
 
 const App = () => {
   return (
@@ -33,7 +33,7 @@ const App = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Hero />} />
         <Route path='/cart' element={<Cart />} />
-        {/* <Route path='/shop' element={<Shop />} /> */}
+        <Route path='/shop' element={<Shop />} />
 
         {/* protected routes */}
         <Route path='/' element={<ProtectedRoute />}>
